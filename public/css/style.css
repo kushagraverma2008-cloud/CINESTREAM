@@ -1,0 +1,101 @@
+/* CineStream Custom Theme Enhancements */
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.75);
+  }
+}
+
+/* Material Symbols configuration */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+.material-symbols-fill {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Smooth custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0c0e13;
+}
+::-webkit-scrollbar-thumb {
+  background: #282a2f;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #37393f;
+}
+
+/* Horizontal scroll row hiding scrollbar */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Card hover animation */
+.movie-card {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+.movie-card:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.85);
+  z-index: 20;
+}
+
+/* Scrubber Timeline Transitions */
+.scrubber-track {
+  position: relative;
+  cursor: pointer;
+}
+.scrubber-track:hover .scrubber-thumb {
+  opacity: 1 !important;
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+/* Volume Slider hover expansion */
+.volume-group:hover .volume-slider-box {
+  width: 5.5rem;
+  opacity: 1;
+  margin-left: 0.5rem;
+}
+
+/* Fade Transitions */
+.fade-in {
+  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Toast Notification */
+#toast-notification {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(100px);
+  opacity: 0;
+}
+#toast-notification.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Loading Pulse */
+.skeleton {
+  background: linear-gradient(90deg, #181B24 25%, #282a2f 50%, #181B24 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}

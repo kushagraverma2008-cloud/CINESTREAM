@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+
+# Runtime user data
+data/watchlist.json
+data/progress.json
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment
+.env
+.env.local
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

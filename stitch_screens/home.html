@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CineStream - Ultra-HD &amp; Atmos Streaming</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-error-container": "#ffdad6",
+            "on-background": "#e2e2e9",
+            "secondary-fixed-dim": "#edc157",
+            "on-tertiary-fixed-variant": "#00513f",
+            "primary-fixed-dim": "#ffb3b4",
+            "primary-fixed": "#ffdad9",
+            "tertiary-fixed": "#8af6d3",
+            "on-secondary-container": "#fff7ee",
+            "outline": "#aa8989",
+            "secondary-container": "#906d00",
+            "tertiary": "#6ddab7",
+            "background": "#111318",
+            "surface-bright": "#37393f",
+            "surface-container-high": "#282a2f",
+            "on-surface": "#e2e2e9",
+            "on-primary": "#680016",
+            "outline-variant": "#5b4040",
+            "on-secondary-fixed": "#251a00",
+            "error": "#ffb4ab",
+            "inverse-on-surface": "#2e3036",
+            "on-surface-variant": "#e3bebd",
+            "surface-dim": "#111318",
+            "surface-tint": "#ffb3b4",
+            "on-primary-container": "#5b0012",
+            "secondary-fixed": "#ffdf9b",
+            "error-container": "#93000a",
+            "on-tertiary": "#00382a",
+            "surface-container-highest": "#33353a",
+            "on-primary-fixed": "#40000a",
+            "on-tertiary-container": "#003024",
+            "on-primary-fixed-variant": "#920023",
+            "primary": "#ffb3b4",
+            "on-tertiary-fixed": "#002118",
+            "tertiary-fixed-dim": "#6ddab7",
+            "inverse-surface": "#e2e2e9",
+            "on-secondary-fixed-variant": "#5b4300",
+            "surface": "#111318",
+            "secondary": "#edc157",
+            "inverse-primary": "#bb1334",
+            "tertiary-container": "#2ea283",
+            "primary-container": "#ff5263",
+            "surface-container": "#1e1f25",
+            "surface-container-lowest": "#0c0e13",
+            "on-secondary": "#3f2e00",
+            "surface-container-low": "#1a1b21",
+            "surface-variant": "#33353a",
+            "on-error": "#690005"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xl": "2.5rem",
+            "space-xs": "0.25rem",
+            "margin": "3rem",
+            "space-sm": "0.5rem",
+            "gutter": "1.5rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "headline-lg": ["Inter"],
+            "display-xl-mobile": ["Inter"],
+            "label-sm": ["Inter"],
+            "headline-md": ["Inter"],
+            "display-xl": ["Inter"],
+            "body-lg": ["Inter"],
+            "label-md": ["Inter"],
+            "headline-sm": ["Inter"],
+            "headline-lg-mobile": ["Inter"],
+            "title-lg": ["Inter"],
+            "body-md": ["Inter"],
+            "title-md": ["Inter"]
+          },
+          "fontSize": {
+            "headline-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "display-xl-mobile": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "label-sm": ["11px", {"lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600"}],
+            "headline-md": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+            "display-xl": ["56px", {"lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+            "label-md": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+            "headline-sm": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "headline-lg-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "title-lg": ["18px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "600"}],
+            "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400"}],
+            "title-md": ["16px", {"lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "500"}]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    /* Hide scrollbars for slick touch rows */
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-[#0B0D12] text-on-surface antialiased selection:bg-primary-container selection:text-on-primary font-body-md text-body-md overflow-x-hidden">
+<!-- Persistent Web Header TopNavBar -->
+<header class="docked full-width top-0 sticky z-50 bg-surface-container-low/85 dark:bg-surface-container-low/85 backdrop-blur-md border-b border-outline-variant/20 dark:border-outline-variant/20 shadow-sm dark:shadow-none">
+<div class="w-full max-w-[1800px] mx-auto px-6 lg:px-12 h-16 flex items-center justify-between gap-8">
+<!-- Left: Logo & Core Navigation -->
+<div class="flex items-center gap-10">
+<a class="font-headline-sm text-headline-sm font-bold tracking-tight text-primary dark:text-primary uppercase flex items-center gap-2" href="#">
+<span class="material-symbols-outlined material-symbols-fill text-primary-container text-headline-md font-headline-md" data-icon="movie">movie</span>
+<span>CineStream</span>
+</a>
+<!-- Desktop Navigation Links -->
+<nav class="hidden md:flex items-center gap-7">
+<!-- Home: Explicit Active State based on context & JSON -->
+<a class="text-on-surface dark:text-on-surface font-semibold border-b-2 border-primary-container dark:border-primary-container pb-1 font-title-lg text-title-lg text-[15px]" href="#">Home</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-medium transition-colors hover:text-on-surface dark:hover:text-on-surface font-title-lg text-title-lg text-[15px]" href="#">Movies</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-medium transition-colors hover:text-on-surface dark:hover:text-on-surface font-title-lg text-title-lg text-[15px]" href="#">TV Shows</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-medium transition-colors hover:text-on-surface dark:hover:text-on-surface font-title-lg text-title-lg text-[15px]" href="#">New &amp; Popular</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-medium transition-colors hover:text-on-surface dark:hover:text-on-surface font-title-lg text-title-lg text-[15px]" href="#">My List</a>
+</nav>
+</div>
+<!-- Right: Search, Notifications, Profile Actions -->
+<div class="flex items-center gap-4">
+<!-- Expanding Search Bar -->
+<div class="relative flex items-center">
+<div class="relative group">
+<span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none material-symbols-outlined" data-icon="search">search</span>
+<input class="w-48 lg:w-72 pl-10 pr-4 py-2 bg-[#181B24] border border-white/10 rounded-xl text-on-surface placeholder:text-[#7B8090] font-body-md text-body-md focus:outline-none focus:border-primary-container focus:w-80 transition-all duration-300" placeholder="Titles, people, genres..." type="text"/>
+</div>
+</div>
+<!-- Notification Bell Action with Badge -->
+<button aria-label="Notifications" class="relative p-2.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/40 transition-all duration-200 active:scale-95">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-primary-container ring-2 ring-[#0B0D12]"></span>
+</button>
+<!-- Profile Avatar Button -->
+<button class="flex items-center gap-2 p-1 rounded-xl hover:bg-surface-container-high/40 transition-all duration-200 active:scale-95 group focus:outline-none focus:ring-1 focus:ring-primary-container">
+<img alt="User profile avatar" class="w-9 h-9 rounded-lg object-cover border border-white/15 group-hover:border-primary-container transition-colors" data-alt="A cinematic close-up portrait of a contemporary user with subtle neon edge-lighting in teal and crimson red, dark minimalist background, ultra-sharp focus, cinematic digital photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBviOirmGoanLDXhJgetw3fUbCJ3uP_vKDKevDuxl0yLBrMmm3KX6KkIVgloX8OUlqmF9VTqSaAViSk8Xmg2Iq3vlJpA1dEyYHnQcMADy8ygFPA3f4Y-LEEJweVf0esuBTHC2qyMCUYbI2t_tk_pKOOoBpPs5XJnXwQd0zI_mYBlzZewnN-h7FXul0fpzgfw2RGXKfA5WQCcw9mLEtvQZvMfkjXVi4-OfZWgiBne9-jj52LBG_-44p9KQ"/>
+<span class="hidden lg:inline-block material-symbols-outlined text-on-surface-variant text-sm group-hover:text-on-surface transition-transform duration-200 group-hover:translate-y-0.5" data-icon="expand_more">expand_more</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Showcase Container -->
+<main class="w-full max-w-[1800px] mx-auto min-h-screen relative">
+<!-- Immersive Hero Banner (70vh) -->
+<section class="relative w-full h-[757px] min-h-[580px] max-h-[820px] flex items-end pb-16 px-6 lg:px-12 overflow-hidden">
+<!-- Hero Background Visual Layer -->
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 scale-100 group-hover:scale-105" data-alt="A wide cinematic 8k sci-fi film still showing an astronaut in a high-tech dark carbon suit suspended in deep space before an immense dimensional rift vortex radiating dark violet, deep crimson, and starlight gold glows. Vast cosmic scale, cinematic anamorphic lens flare, moody dark atmospheric lighting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBJf03q_QoWRkUfzRmT478ntwP1-uulsbh37TIHDtxj19rURCKJ5SXS9RnFDf6ki6RhpX0nRV9OlwIsxm7XPQMDHa6ubcoUCIUSwVypx3wGpGjS3NB1pfWP7BpNpIiHU4T6E7TjAYtZnQTxdsk_EVDgJH7am9O0rdIv12oUgN9GMj8RO7kve12i8RHw8CSEaHBoh2B_iHilRZNDzPPiIBAcT2SVSsZGzJuYYrnUZwziNFlz7FT4WRaq1Q')">
+<!-- Complex Cinematic Scrims -->
+<div class="absolute inset-0 bg-gradient-to-t from-[#0B0D12] via-[#0B0D12]/60 to-transparent"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-[#0B0D12] via-[#0B0D12]/75 to-transparent w-full md:w-3/4"></div>
+<div class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#0B0D12]/80 to-transparent"></div>
+</div>
+<!-- Hero Content Info Block -->
+<div class="relative z-10 max-w-2xl flex flex-col gap-4 mb-2">
+<!-- Badges & Ratings Row -->
+<div class="flex flex-wrap items-center gap-3">
+<span class="px-2.5 py-1 rounded bg-[#FFD166]/15 border border-[#FFD166]/30 text-[#FFD166] font-label-sm text-label-sm uppercase tracking-wider flex items-center gap-1.5 font-bold">
+<span class="material-symbols-outlined material-symbols-fill text-[14px]" data-icon="grade">grade</span>
+            4.9 Rating
+          </span>
+<span class="px-2 py-0.5 rounded bg-white/[0.06] border border-white/[0.08] text-[#B6BAC3] font-label-sm text-label-sm font-semibold tracking-wider">
+            4K ULTRA-HD
+          </span>
+<span class="px-2 py-0.5 rounded bg-white/[0.06] border border-white/[0.08] text-[#B6BAC3] font-label-sm text-label-sm font-semibold tracking-wider">
+            DOLBY ATMOS
+          </span>
+<span class="px-2 py-0.5 rounded bg-white/[0.06] border border-white/[0.08] text-[#B6BAC3] font-label-sm text-label-sm">
+            16+
+          </span>
+</div>
+<!-- Featured Title -->
+<h1 class="font-display-xl text-display-xl text-on-surface tracking-tight leading-none drop-shadow-2xl">
+          CHRONO : VOID
+        </h1>
+<!-- Synopsis (2-line compelling copy) -->
+<p class="font-body-lg text-body-lg text-on-surface/90 line-clamp-2 max-w-xl text-shadow leading-relaxed">
+          When the temporal bridge destabilizes at humanity’s furthest orbital outpost, an elite salvage navigator must venture past the event horizon before timeline collapse becomes permanent.
+        </p>
+<!-- CTA Buttons & Direct Actions -->
+<div class="flex flex-wrap items-center gap-4 pt-2">
+<!-- Primary Red CTA Play -->
+<button class="h-12 px-6 rounded-xl bg-primary-container hover:bg-[#C92E42] text-white font-title-md text-title-md font-semibold flex items-center gap-2.5 transition-all duration-200 active:scale-95 shadow-lg shadow-primary-container/25 focus:ring-2 focus:ring-on-surface focus:outline-none" onclick="triggerToast('Starting CHRONO : VOID in 4K HDR...')">
+<span class="material-symbols-outlined material-symbols-fill text-2xl" data-icon="play_arrow">play_arrow</span>
+<span>Play</span>
+</button>
+<!-- Secondary Translucent CTA More Info -->
+<button class="h-12 px-6 rounded-xl bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/15 text-on-surface font-title-md text-title-md font-semibold flex items-center gap-2.5 transition-all duration-200 active:scale-95" onclick="triggerToast('Opening detailed overview...')">
+<span class="material-symbols-outlined text-2xl" data-icon="info">info</span>
+<span>More Info</span>
+</button>
+<!-- Add to List Quick Toggle -->
+<button aria-label="Add to List" class="w-12 h-12 rounded-xl bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/15 text-on-surface flex items-center justify-center transition-all duration-200 active:scale-95 group" onclick="triggerToast('Added CHRONO : VOID to My List')">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform" data-icon="add">add</span>
+</button>
+</div>
+</div>
+<!-- Hero Carousel Indicators & Audio Toggle -->
+<div class="absolute right-6 lg:right-12 bottom-16 z-10 flex items-center gap-6">
+<button aria-label="Toggle Sound" class="w-11 h-11 rounded-full bg-surface-container-high/70 backdrop-blur-md border border-white/10 text-on-surface flex items-center justify-center hover:bg-surface-container-high transition-colors active:scale-95">
+<span class="material-symbols-outlined" data-icon="volume_up">volume_up</span>
+</button>
+<!-- Carousel Pagination Dots -->
+<div class="flex items-center gap-2">
+<span class="w-8 h-1.5 rounded-full bg-primary-container transition-all"></span>
+<span class="w-2 h-1.5 rounded-full bg-white/30 hover:bg-white/60 transition-all cursor-pointer"></span>
+<span class="w-2 h-1.5 rounded-full bg-white/30 hover:bg-white/60 transition-all cursor-pointer"></span>
+<span class="w-2 h-1.5 rounded-full bg-white/30 hover:bg-white/60 transition-all cursor-pointer"></span>
+</div>
+</div>
+</section>
+<!-- Content Sections Stream -->
+<div class="px-6 lg:px-12 space-y-12 pb-20 relative z-20 -mt-6">
+<!-- Row 1: Continue Watching with Progress Bar -->
+<section class="space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">Continue Watching</h2>
+<span class="text-on-surface-variant font-label-md text-label-md">3 in progress</span>
+</div>
+<div class="flex items-center gap-2">
+<button aria-label="Scroll left" class="w-9 h-9 rounded-lg bg-surface-container border border-white/10 flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95" onclick="scrollRow('continue-row', -1)">
+<span class="material-symbols-outlined text-lg" data-icon="chevron_left">chevron_left</span>
+</button>
+<button aria-label="Scroll right" class="w-9 h-9 rounded-lg bg-surface-container border border-white/10 flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95" onclick="scrollRow('continue-row', 1)">
+<span class="material-symbols-outlined text-lg" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- 16:9 Landscape Video Thumbnail Cards with dynamic progress -->
+<div class="flex gap-5 overflow-x-auto hide-scrollbar scroll-smooth py-2" id="continue-row">
+<!-- Continue Card 1: Solaris Eclipse 68% -->
+<div class="flex-none w-[320px] md:w-[380px] group relative rounded-xl bg-surface-container border border-white/10 overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:border-white/20">
+<div class="relative aspect-video w-full overflow-hidden bg-surface-container-lowest">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A cinematic widescreen 16:9 frame from a dark solar sci-fi epic showing a blinding total eclipse ring over a futuristic obsidian space station, amber and solar crimson hues, cinematic lens aberration, dark moody atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEr-7l5P1PDibhsYoA3ChEy0JafXH6N3JIsGvi3x3ymzdDOpJzu_m7CghlT4JnIkeknJr6s1meFivRCW4ZC_ENLHed0LD94oknY5ZCnkryl0EQeXRbLPRH0BduK3k7Mp_Wkfsuxae3M6lBzau8Qi8Jz-HCDd8-0zDJPxCaw9LCE4Z87ijEjPK_FiFE3bmjlL9hL5mBWnG1CuJ4B2-mHuJaoor3xzrzOUXoGYSs5QRyKQ0TTA3V9Y6dSg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0B0D12] via-transparent to-transparent opacity-80"></div>
+<!-- Hover Overlay Play -->
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
+<div class="w-12 h-12 rounded-full bg-primary-container text-white flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
+<span class="material-symbols-outlined material-symbols-fill text-2xl" data-icon="play_arrow">play_arrow</span>
+</div>
+</div>
+<!-- Time Left Badge -->
+<span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-black/70 backdrop-blur-md text-white font-label-sm text-label-sm border border-white/10">
+                24m left
+              </span>
+<!-- Thin #E6394F Progress bar -->
+<div class="absolute bottom-0 left-0 right-0 h-1 bg-white/20">
+<div class="h-full bg-primary-container" style="width: 68%;"></div>
+</div>
+</div>
+<div class="p-4 flex items-center justify-between">
+<div>
+<h3 class="font-title-md text-title-md text-on-surface font-semibold group-hover:text-primary-container transition-colors">Solaris Eclipse</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">S2:E4 "The Umbra Divide"</p>
+</div>
+<button class="p-2 text-on-surface-variant hover:text-on-surface hover:bg-white/10 rounded-lg transition-colors" onclick="triggerToast('Removed from Continue Watching')" title="Remove">
+<span class="material-symbols-outlined text-lg" data-icon="close">close</span>
+</button>
+</div>
+</div>
+<!-- Continue Card 2: Neon Horizon 42% -->
+<div class="flex-none w-[320px] md:w-[380px] group relative rounded-xl bg-surface-container border border-white/10 overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:border-white/20">
+<div class="relative aspect-video w-full overflow-hidden bg-surface-container-lowest">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A gritty neo-noir cyberpunk city street at night in 16:9 cinematic ratio with towering neon holographic billboards in magenta and amber, slick rain-washed asphalt reflecting headlights, ultra-detailed cinematic depth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpzFnc2DJucGvuWleBUs2GDDpceerOtMnSRTiLDi_Ky5STgDdKmjbCYQKPUOhs5TaEJx3aOJW_Rl-uWQeQoBpe42hHriWraTZclqFFS8K55AjJi8NdsmEGwBI0B_ndHe9ak8j29wwR9kE_6dsz0b3gFM1E2Fc_zwGVNgQCtNGFBq1YUA9SaSqHOWsoGXLX_UIj7-UP9U5mHg4x1kZWmaAHhduLqYSKshNXAV5vVg5jZ90HadKl_LS77w"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0B0D12] via-transparent to-transparent opacity-80"></div>
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
+<div class="w-12 h-12 rounded-full bg-primary-container text-white flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
+<span class="material-symbols-outlined material-symbols-fill text-2xl" data-icon="play_arrow">play_arrow</span>
+</div>
+</div>
+<span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-black/70 backdrop-blur-md text-white font-label-sm text-label-sm border border-white/10">
+                48m left
+              </span>
+<div class="absolute bottom-0 left-0 right-0 h-1 bg-white/20">
+<div class="h-full bg-primary-container" style="width: 42%;"></div>
+</div>
+</div>
+<div class="p-4 flex items-center justify-between">
+<div>
+<h3 class="font-title-md text-title-md text-on-surface font-semibold group-hover:text-primary-container transition-colors">Neon Horizon</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">S1:E8 "Ghost Circuit"</p>
+</div>
+<button class="p-2 text-on-surface-variant hover:text-on-surface hover:bg-white/10 rounded-lg transition-colors" onclick="triggerToast('Removed from Continue Watching')" title="Remove">
+<span class="material-symbols-outlined text-lg" data-icon="close">close</span>
+</button>
+</div>
+</div>
+<!-- Continue Card 3: The Last Protocol 85% -->
+<div class="flex-none w-[320px] md:w-[380px] group relative rounded-xl bg-surface-container border border-white/10 overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:border-white/20">
+<div class="relative aspect-video w-full overflow-hidden bg-surface-container-lowest">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A cold, high-tension surveillance control room bathed in midnight blue and emerald screen glow, a solitary agent in silhouette analyzing biometric data streams, 16:9 cinematic composition, moody atmospheric lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvbNT24iKZqAqogLULdWlByvXREBVZvAFcY7_8TFbocanJ1Ymasii1N28ISxUAF3Pj7DxvVnh7tI3jeaym_oX5dZxUK_DjSDYWvGiad1Gwp-JiG5X2_zBKtXecbQC4VdLT1OwoVDKiHj1LRwp2a0duAW4ohfiV6Ov0olNHeao7XbCU-VLg7p-2ZyfrOp2MHp6e5TX2N6wdoqqQu_SJWu2ufzQYc7dFU7d6Nw2vBIVCgxj6xCNcciPYmQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0B0D12] via-transparent to-transparent opacity-80"></div>
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
+<div class="w-12 h-12 rounded-full bg-primary-container text-white flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
+<span class="material-symbols-outlined material-symbols-fill text-2xl" data-icon="play_arrow">play_arrow</span>
+</div>
+</div>
+<span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-black/70 backdrop-blur-md text-white font-label-sm text-label-sm border border-white/10">
+                11m left
+              </span>
+<div class="absolute bottom-0 left-0 right-0 h-1 bg-white/20">
+<div class="h-full bg-primary-container" style="width: 85%;"></div>
+</div>
+</div>
+<div class="p-4 flex items-center justify-between">
+<div>
+<h3 class="font-title-md text-title-md text-on-surface font-semibold group-hover:text-primary-container transition-colors">The Last Protocol</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Feature Film</p>
+</div>
+<button class="p-2 text-on-surface-variant hover:text-on-surface hover:bg-white/10 rounded-lg transition-colors" onclick="triggerToast('Removed from Continue Watching')" title="Remove">
+<span class="material-symbols-outlined text-lg" data-icon="close">close</span>
+</button>
+</div>
+</div>
+<!-- Continue Card 4: Quantum Mirage 15% -->
+<div class="flex-none w-[320px] md:w-[380px] group relative rounded-xl bg-surface-container border border-white/10 overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:border-white/20">
+<div class="relative aspect-video w-full overflow-hidden bg-surface-container-lowest">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A surreal desert landscape with floating metallic structures and an iridescent atmospheric rift under dual moons, cinematic wide 16:9 composition, stark deep shadows with vibrant violet reflections." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAa5qY5Hi1aRvoPQMSy3xp5-UO8aMmZsDn8RwV6sqH9pJI5Yf9pvKUOwTqHQVgr4dzPcazCuezvXgyV2TORGdcT9-g-apn1UuYKfrRmbqi8CBFmMg3pq_5iZ7aABtODm_VmRH72TXKZQ6zESuWeaLev3S9hmgsSkZiPUMdxy0zPrfn4yOPHb27LjSH0oiRFbBpGL18FHjTSIgPiiOZwQEJE-JEo3qfGpacGhyzWb-AxJMjXdjfcL4P7eA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0B0D12] via-transparent to-transparent opacity-80"></div>
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
+<div class="w-12 h-12 rounded-full bg-primary-container text-white flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
+<span class="material-symbols-outlined material-symbols-fill text-2xl" data-icon="play_arrow">play_arrow</span>
+</div>
+</div>
+<span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-black/70 backdrop-blur-md text-white font-label-sm text-label-sm border border-white/10">
+                1h 12m left
+              </span>
+<div class="absolute bottom-0 left-0 right-0 h-1 bg-white/20">
+<div class="h-full bg-primary-container" style="width: 15%;"></div>
+</div>
+</div>
+<div class="p-4 flex items-center justify-between">
+<div>
+<h3 class="font-title-md text-title-md text-on-surface font-semibold group-hover:text-primary-container transition-colors">Quantum Mirage</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">S3:E1 "Origins"</p>
+</div>
+<button class="p-2 text-on-surface-variant hover:text-on-surface hover:bg-white/10 rounded-lg transition-colors" onclick="triggerToast('Removed from Continue Watching')" title="Remove">
+<span class="material-symbols-outlined text-lg" data-icon="close">close</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Row 2: Trending Now (2:3 Cinematic Posters with Rich Hover States) -->
+<section class="space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">Trending Now</h2>
+<span class="px-2 py-0.5 rounded bg-primary-container/20 text-primary-container font-label-sm text-label-sm font-bold">TOP 10</span>
+</div>
+<div class="flex items-center gap-2">
+<button aria-label="Scroll left" class="w-9 h-9 rounded-lg bg-surface-container border border-white/10 flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95" onclick="scrollRow('trending-row', -1)">
+<span class="material-symbols-outlined text-lg" data-icon="chevron_left">chevron_left</span>
+</button>
+<button aria-label="Scroll right" class="w-9 h-9 rounded-lg bg-surface-container border border-white/10 flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95" onclick="scrollRow('trending-row', 1)">
+<span class="material-symbols-outlined text-lg" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="flex gap-5 overflow-x-auto hide-scrollbar scroll-smooth py-4" id="trending-row">
+<!-- Poster 1 -->
+<div class="flex-none w-[200px] md:w-[230px] aspect-[2/3] group relative rounded-xl bg-surface-container border border-white/10 overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105 hover:z-30 hover:shadow-2xl hover:border-white/25">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A dramatic vertical 2:3 movie poster for a dystopian thriller featuring a cloaked figure walking through an abandoned neon cyber-megacity in dense fog, crimson neon glow and pitch dark tones, award winning film key art." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-rF49BGZSzBOzLBwKiNSg66p_Z6NF4pljpKv2Uk4KZKssEuZvfGN9A5dZbSGjdV7iqZK2Op_ulMJUoBwfyAU3GMQHXX51L-obb8YzZ-mxEInhIBWX4n_71AHXmHMdIn3YScSbDOvgq-RgYpo_g9fg1pqlWTFMi8b9eZpOrZ0L4iAIhUjMCSuXK9GnDibynT4jVK7zouVIrqQSRfOpImSHVir9uwiXT9Zq4b7IMDDqkSypl_WREg5egw"/>
+<div class="absolute top-2 left-2 w-7 h-7 rounded-lg bg-black/80 backdrop-blur-md border border-white/20 text-white font-title-md font-bold flex items-center justify-center shadow-lg">
+              1
+            </div>
+<!-- Hover Preview Overlay -->
+<div class="absolute inset-0 bg-gradient-to-t from-[#0B0D12] via-[#0B0D12]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 flex flex-col justify-end">
+<h3 class="font-title-lg text-title-lg font-bold text-on-surface leading-snug">Vortex of Silence</h3>
+<div class="flex items-center gap-2 mt-1 mb-3">
+<span class="text-[#FFD166] text-label-sm font-semibold flex items-center">★ 4.8</span>
+<span class="text-white/60 text-label-sm">2024</span>
+<span class="px-1.5 py-0.2 rounded border border-white/20 text-white/70 text-label-sm">18+</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex-1 py-2 rounded-lg bg-primary-container hover:bg-[#C92E42] text-white font-label-md text-label-md font-semibold flex items-center justify-center gap-1 transition-colors" onclick="triggerToast('Playing Vortex of Silence...')">
+<span class="material-symbols-outlined text-sm material-symbols-fill" data-icon="play_arrow">play_arrow</span>
+<span>Play</span>
+</button>
+<button class="w-9 h-9 rounded-lg bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition-colors" onclick="triggerToast('Added Vortex of Silence to My List')" title="Add to My List">
+<span class="material-symbols-outlined text-base" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Poster 2 -->
+<div class="flex-none w-[200px] md:w-[230px] aspect-[2/3] group relative rounded-xl bg-surface-container border border-white/10 overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105 hover:z-30 hover:shadow-2xl hover:border-white/25">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A cinematic 2:3 vertical film poster showing an ancient oceanic research submarine illuminating an abyssal bioluminescent leviathan deep beneath dark waters, glowing turquoise and rich indigo aesthetic, hyper-detailed." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZn6SXDtO6wTT7RYb9w1UJ3K7mbfRJPi3WW5B1vLlhHkz_LK_mHq9CSWbb3rD20Prc8iosZCjvlXjB_1IlJHVBeDcc8QRIqEUAkdr6Vyb73YrAqxh7h_QVGOtJBcT4GVAN4wRIXTzReyrSmv1-hxb_FamAv_A4On8V-CtlAN5ay7nHSBho-m4Wr0wRHyCMWzGjTSFa6h14tzxuC1VkUY9LPwj1CHxF4OILgfxcNNPDr3xtGCi7WJLP8w"/>
+<div class="absolute top-2 left-2 w-7 h-7 rounded-lg bg-black/80 backdrop-blur-md border border-white/20 text-white font-title-md font-bold flex items-center justify-center shadow-lg">
+              2
+            </div>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0B0D12] via-[#0B0D12]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 flex flex-col justify-end">
+<h3 class="font-title-lg text-title-lg font-bold text-on-surface leading-snug">Abyssal Reach</h3>
+<div class="flex items-center gap-2 mt-1 mb-3">
+<span class="text-[#FFD166] text-label-sm font-semibold flex items-center">★ 4.7</span>
+<span class="text-white/60 text-label-sm">2024</span>
+<span class="px-1.5 py-0.2 rounded border border-white/20 text-white/70 text-label-sm">13+</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex-1 py-2 rounded-lg bg-primary-container hover:bg-[#C92E42] text-white font-label-md text-label-md font-semibold flex items-center justify-center gap-1 transition-colors" onclick="triggerToast('Playing Abyssal Reach...')">
+<span class="material-symbols-outlined text-sm material-symbols-fill" data-icon="play_arrow">play_arrow</span>
+<span>Play</span>
+</button>
+<button class="w-9 h-9 rounded-lg bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition-colors" onclick="triggerToast('Added Abyssal Reach to My List')" title="Add to My List">
+<span class="material-symbols-outlined text-base" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Poster 3 -->
+<div class="flex-none w-[200px] md:w-[230px] aspect-[2/3] group relative rounded-xl bg-surface-container border border-white/10 overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105 hover:z-30 hover:shadow-2xl hover:border-white/25">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A striking 2:3 vertical film poster depicting an enigmatic sorcerer in high-contrast golden-hour desert dunes, holding a floating glass relic pulsing with internal lightning, intense cinematic lighting, rich golden and black tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlLUlnlEdOkLtV0aug-iK7f9XG45xHfOMlgVQoLRfDc0UG30tJ_1OvpYkI_1TzHRCLJjWW6G1oieP6ONOhP5MxIwrquzzqjLsBGZHLfkQ9zKb0IgXnW--GJNSWv2Cmzc9ocAVypQq0j-Tm5X-Qg7Iy0PTCtjAjcK1b7UT8zJO_vykiH1fpMWLa5ASWgsBZrFRS9ydmwV1n5U3Hz6-GW5pXispRsvrhuyOuPXEeirTArQ16gM3Bao6JZw"/>
+<div class="absolute top-2 left-2 w-7 h-7 rounded-lg bg-black/80 backdrop-blur-md border border-white/20 text-white font-title-md font-bold flex items-center justify-center shadow-lg">
+              3
+            </div>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0B0D12] via-[#0B0D12]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 flex flex-col justify-end">
+<h3 class="font-title-lg text-title-lg font-bold text-on-surface leading-snug">The Glass Shard</h3>
+<div class="flex items-center gap-2 mt-1 mb-3">
+<span class="text-[#FFD166] text-label-sm font-semibold flex items-center">★ 4.9</span>
+<span class="text-white/60 text-label-sm">2023</span>
+<span class="px-1.5 py-0.2 rounded border border-white/20 text-white/70 text-label-sm">16+</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex-1 py-2 rounded-lg bg-primary-container hover:bg-[#C92E42] text-white font-label-md text-label-md font-semibold flex items-center justify-center gap-1 transition-colors" onclick="triggerToast('Playing The Glass Shard...')">
+<span class="material-symbols-outlined text-sm material-symbols-fill" data-icon="play_arrow">play_arrow</span>
+<span>Play</span>
+</button>
+<button class="w-9 h-9 rounded-lg bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition-colors" onclick="triggerToast('Added The Glass Shard to My List')" title="Add to My List">
+<span class="material-symbols-outlined text-base" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Poster 4 -->
+<div class="flex-none w-[200px] md:w-[230px] aspect-[2/3] group relative rounded-xl bg-surface-container border border-white/10 overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105 hover:z-30 hover:shadow-2xl hover:border-white/25">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A vertical 2:3 poster of a high-speed orbital racer spacecraft cutting through planetary dust rings, kinetic blur and fiery thruster trails in vivid vermilion and carbon grey, cinematic movie teaser art." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3TeCLSWTZP9lIhHeULA2zoXROnqg3eZk6s9ff1rhwBgzxtlsubsHDa-n-EHeglLfH4zeRJZcKq3120_yW1fNTFliTeIkCIzsAbHiA4DljgJdzcn4gpCP4eg0Py_OQvTf4C_ZVFJZmsFddRqKUKPFBppIqidhpPA3lc0AYYFUUMk-Fkiey3Io1I982hs5w982v8a8KpcRhybDSU-LMjLqmSwPYSDklptmU7weL_rjEAkQ7VaINWHUe7A"/>
+<div class="absolute top-2 left-2 w-7 h-7 rounded-lg bg-black/80 backdrop-blur-md border border-white/20 text-white font-title-md font-bold flex items-center justify-center shadow-lg">
+              4
+            </div>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0B0D12] via-[#0B0D12]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 flex flex-col justify-end">
+<h3 class="font-title-lg text-title-lg font-bold text-on-surface leading-snug">Apex Vector</h3>
+<div class="flex items-center gap-2 mt-1 mb-3">
+<span class="text-[#FFD166] text-label-sm font-semibold flex items-center">★ 4.6</span>
+<span class="text-white/60 text-label-sm">2024</span>
+<span class="px-1.5 py-0.2 rounded border border-white/20 text-white/70 text-label-sm">13+</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex-1 py-2 rounded-lg bg-primary-container hover:bg-[#C92E42] text-white font-label-md text-label-md font-semibold flex items-center justify-center gap-1 transition-colors" onclick="triggerToast('Playing Apex Vector...')">
+<span class="material-symbols-outlined text-sm material-symbols-fill" data-icon="play_arrow">play_arrow</span>
+<span>Play</span>
+</button>
+<button class="w-9 h-9 rounded-lg bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition-colors" onclick="triggerToast('Added Apex Vector to My List')" title="Add to My List">
+<span class="material-symbols-outlined text-base" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Poster 5 -->
+<div class="flex-none w-[200px] md:w-[230px] aspect-[2/3] group relative rounded-xl bg-surface-container border border-white/10 overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105 hover:z-30 hover:shadow-2xl hover:border-white/25">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A moody 2:3 vertical key-art poster of an old gothic clocktower surrounded by swirling flock of metallic ravens against an ominous crimson solar flare sky, hyper-detailed dark gothic fantasy aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdxFL8fRfnKSgChYxWO2ijnWMNw1YxInV2wdyibhNZw98exuvRqbOSn4n4MJH6VjKU5FqlgjHDiGeqp6HAIFZmK8zaMRX393sjLm72Yt86-nR_H3auoUHJ6cJbRZDL4jkRmhM8PRgbk686kGqaskX082I3hAAJ4YE5bq6zRO18O_xs5syQWXz4St_izwe7ev3ogDJdh7_Yt0DumAVqh5ebIdZeBpvwD8lWKD6h25ellwklcNc0KP8Zbg"/>
+<div class="absolute top-2 left-2 w-7 h-7 rounded-lg bg-black/80 backdrop-blur-md border border-white/20 text-white font-title-md font-bold flex items-center justify-center shadow-lg">
+              5
+            </div>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0B0D12] via-[#0B0D12]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 flex flex-col justify-end">
+<h3 class="font-title-lg text-title-lg font-bold text-on-surface leading-snug">Chime of Midnight</h3>
+<div class="flex items-center gap-2 mt-1 mb-3">
+<span class="text-[#FFD166] text-label-sm font-semibold flex items-center">★ 4.7</span>
+<span class="text-white/60 text-label-sm">2024</span>
+<span class="px-1.5 py-0.2 rounded border border-white/20 text-white/70 text-label-sm">16+</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex-1 py-2 rounded-lg bg-primary-container hover:bg-[#C92E42] text-white font-label-md text-label-md font-semibold flex items-center justify-center gap-1 transition-colors" onclick="triggerToast('Playing Chime of Midnight...')">
+<span class="material-symbols-outlined text-sm material-symbols-fill" data-icon="play_arrow">play_arrow</span>
+<span>Play</span>
+</button>
+<button class="w-9 h-9 rounded-lg bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition-colors" onclick="triggerToast('Added Chime of Midnight to My List')" title="Add to My List">
+<span class="material-symbols-outlined text-base" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Poster 6 -->
+<div class="flex-none w-[200px] md:w-[230px] aspect-[2/3] group relative rounded-xl bg-surface-container border border-white/10 overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105 hover:z-30 hover:shadow-2xl hover:border-white/25">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A minimalist 2:3 movie poster showing two astronauts reflected in an obsidian monolith on a desolate frozen moon, crisp silver and cobalt blue rim lighting, cinematic sci-fi isolation theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXqV_tWXH0NST_HlS8sSsnmn1bCxb6Ya2Yhn_-R7w9ieCU-3kXTOj-UltCVUZ75zUnOQbjXDMeRxODIkz9PTX7P1qyVbWyj3sHAs8eXUhUssTFVvisbRC_Zm9LEsXlr3Su7zFjIiRO6nj5w8a-PNVpEZ8YBWnG1qwKfoujRTLtsFUYTrns_92ZYMY2sGW6Yzzp_8b8nBUjbSOMsRZ_eFPzoHM5Wbmlh7GuZd0qXMGktgskR5XyPsByvQ"/>
+<div class="absolute top-2 left-2 w-7 h-7 rounded-lg bg-black/80 backdrop-blur-md border border-white/20 text-white font-title-md font-bold flex items-center justify-center shadow-lg">
+              6
+            </div>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0B0D12] via-[#0B0D12]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 flex flex-col justify-end">
+<h3 class="font-title-lg text-title-lg font-bold text-on-surface leading-snug">Monolith Alpha</h3>
+<div class="flex items-center gap-2 mt-1 mb-3">
+<span class="text-[#FFD166] text-label-sm font-semibold flex items-center">★ 4.9</span>
+<span class="text-white/60 text-label-sm">2023</span>
+<span class="px-1.5 py-0.2 rounded border border-white/20 text-white/70 text-label-sm">13+</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex-1 py-2 rounded-lg bg-primary-container hover:bg-[#C92E42] text-white font-label-md text-label-md font-semibold flex items-center justify-center gap-1 transition-colors" onclick="triggerToast('Playing Monolith Alpha...')">
+<span class="material-symbols-outlined text-sm material-symbols-fill" data-icon="play_arrow">play_arrow</span>
+<span>Play</span>
+</button>
+<button class="w-9 h-9 rounded-lg bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition-colors" onclick="triggerToast('Added Monolith Alpha to My List')" title="Add to My List">
+<span class="material-symbols-outlined text-base" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Row 3: New Releases with Gold Chips -->
+<section class="space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">New Releases</h2>
+<span class="px-2 py-0.5 rounded bg-[#FFD166]/15 text-[#FFD166] border border-[#FFD166]/30 font-label-sm text-label-sm font-bold uppercase">
+              NEW THIS WEEK
+            </span>
+</div>
+<div class="flex items-center gap-2">
+<button aria-label="Scroll left" class="w-9 h-9 rounded-lg bg-surface-container border border-white/10 flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95" onclick="scrollRow('new-releases-row', -1)">
+<span class="material-symbols-outlined text-lg" data-icon="chevron_left">chevron_left</span>
+</button>
+<button aria-label="Scroll right" class="w-9 h-9 rounded-lg bg-surface-container border border-white/10 flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95" onclick="scrollRow('new-releases-row', 1)">
+<span class="material-symbols-outlined text-lg" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="flex gap-5 overflow-x-auto hide-scrollbar scroll-smooth py-4" id="new-releases-row">
+<!-- New Release 1 -->
+<div class="flex-none w-[200px] md:w-[230px] aspect-[2/3] group relative rounded-xl bg-surface-container border border-white/10 overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105 hover:z-30 hover:shadow-2xl hover:border-white/25">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A portrait-oriented 2:3 movie poster featuring a female cybernetic detective in a dark trench coat standing under torrential holographic rain, neon reflections of Japanese calligraphy, dark ambient cinematic tone." src="https://lh3.googleusercontent.com/aida-public/AB6AXuABwoyX7moHP41PBkXLjgswrh-ArgQgEa7jBoyCpfa6JL4SY4t0-erUL0V6uhq6DsyC_gKaZPJAboHsEJvADykwfTQpSWb-sM2EHSS_OJQt9Y-JqmaeHteXbxQmvbidCpVDPStXJl_dXWDGpijQYWviXjgmVOMAAk9mmb6J194X3n3X9OnsKUTvII-WROk5Sm0HQ_PTvmKjDMkDVY8usnADsQ5DCaUpiEXOaRTVyj5ZdcxBnw08sHMZ9A"/>
+<span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded bg-[#FFD166] text-black font-label-sm text-label-sm font-bold tracking-wider">
+              NEW
+            </span>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0B0D12] via-[#0B0D12]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 flex flex-col justify-end">
+<h3 class="font-title-lg text-title-lg font-bold text-on-surface leading-snug">Synapse Runner</h3>
+<p class="text-on-surface-variant text-label-sm line-clamp-1 mb-2">Sci-Fi Crime Drama</p>
+<div class="flex items-center gap-2">
+<button class="flex-1 py-2 rounded-lg bg-primary-container hover:bg-[#C92E42] text-white font-label-md text-label-md font-semibold flex items-center justify-center gap-1 transition-colors" onclick="triggerToast('Playing Synapse Runner...')">
+<span class="material-symbols-outlined text-sm material-symbols-fill" data-icon="play_arrow">play_arrow</span>
+<span>Play</span>
+</button>
+<button class="w-9 h-9 rounded-lg bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition-colors" onclick="triggerToast('Added Synapse Runner to My List')">
+<span class="material-symbols-outlined text-base" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- New Release 2 -->
+<div class="flex-none w-[200px] md:w-[230px] aspect-[2/3] group relative rounded-xl bg-surface-container border border-white/10 overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105 hover:z-30 hover:shadow-2xl hover:border-white/25">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A cinematic 2:3 poster of a luxury subterranean high-speed magnetic train speeding through an emerald crystalline underground tunnel, motion blur, moody architectural sci-fi." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDYO1gM1jvA4WrOP2lJAHo42u7xy7QvBhTiJMW_4l03gPvJiSta60N9d_RZMapxbUgu_wRO6EkBkUtQf7cuSpUHuvy0fZPQVIVfZd6hSwUnRkQoMydufxX4cRtVKk_BoNG-SAxoxqOm6k269kB1Qr2nHGwuO3he6R7MpGXD4kWaxdrc-miwz3Y9pVmfSCbAcnGxE9ciO6RFZ844AaWcYCCuq2IzZ0yCjaxX7J6TTgFM5PgnUxY291jRw"/>
+<span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded bg-[#FFD166] text-black font-label-sm text-label-sm font-bold tracking-wider">
+              NEW
+            </span>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0B0D12] via-[#0B0D12]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 flex flex-col justify-end">
+<h3 class="font-title-lg text-title-lg font-bold text-on-surface leading-snug">Hyperline 88</h3>
+<p class="text-on-surface-variant text-label-sm line-clamp-1 mb-2">High-Stakes Thriller</p>
+<div class="flex items-center gap-2">
+<button class="flex-1 py-2 rounded-lg bg-primary-container hover:bg-[#C92E42] text-white font-label-md text-label-md font-semibold flex items-center justify-center gap-1 transition-colors" onclick="triggerToast('Playing Hyperline 88...')">
+<span class="material-symbols-outlined text-sm material-symbols-fill" data-icon="play_arrow">play_arrow</span>
+<span>Play</span>
+</button>
+<button class="w-9 h-9 rounded-lg bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition-colors" onclick="triggerToast('Added Hyperline 88 to My List')">
+<span class="material-symbols-outlined text-base" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- New Release 3 -->
+<div class="flex-none w-[200px] md:w-[230px] aspect-[2/3] group relative rounded-xl bg-surface-container border border-white/10 overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105 hover:z-30 hover:shadow-2xl hover:border-white/25">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A high contrast film poster showing an ancient obsidian cathedral built inside a hollowed out asteroid in deep space, cold starry background, striking theological sci-fi concept art." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBs846QAU5wVG3kRcSFiaYl4P5SYIYYpj8AzUxMsdC2vAbPdNjiWZyUCDsQk1BU2zu4R4Kn-FN6AJlCUadQKynnXX_Z_qhts_Xi8ufEiG2uy08bClWmFq1YYUluD1BcWUZngcywCil5kVd06xSAO1CExANzjBEZeCn77d-eovVPZDRiE3mWvKOmO1vTRDl0BZATmTUjn0UDC2SnZyNw84epXkSDfO9HgClUpL0Or5W3KVUdhtgWeM7XFA"/>
+<span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded bg-[#FFD166] text-black font-label-sm text-label-sm font-bold tracking-wider">
+              NEW
+            </span>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0B0D12] via-[#0B0D12]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 flex flex-col justify-end">
+<h3 class="font-title-lg text-title-lg font-bold text-on-surface leading-snug">Sanctuary Null</h3>
+<p class="text-on-surface-variant text-label-sm line-clamp-1 mb-2">Space Mystery</p>
+<div class="flex items-center gap-2">
+<button class="flex-1 py-2 rounded-lg bg-primary-container hover:bg-[#C92E42] text-white font-label-md text-label-md font-semibold flex items-center justify-center gap-1 transition-colors" onclick="triggerToast('Playing Sanctuary Null...')">
+<span class="material-symbols-outlined text-sm material-symbols-fill" data-icon="play_arrow">play_arrow</span>
+<span>Play</span>
+</button>
+<button class="w-9 h-9 rounded-lg bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition-colors" onclick="triggerToast('Added Sanctuary Null to My List')">
+<span class="material-symbols-outlined text-base" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- New Release 4 -->
+<div class="flex-none w-[200px] md:w-[230px] aspect-[2/3] group relative rounded-xl bg-surface-container border border-white/10 overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105 hover:z-30 hover:shadow-2xl hover:border-white/25">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A portrait 2:3 vertical film artwork showing an enigmatic masked swordsman standing over a ruined neon shrine in a nocturnal bamboo forest, scarlet moonlight filtering through branches." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD86QwMmXZfl5OK62rKPKfoj__zNKhaRSOnOP1-7ed8q0vMq96ZWxwkoi9sAHweP5ndFzzyLSfodRqfa62hotrRdJWLJ95w6SqVqndpckBZE6SKRtPlaQLAVqnmcmm7iPnY6O_4h_gEGBt_KrGxQ9bQKgA3FTeoGzgRMNxJ4mGrm1iUpZY7rNpNIRjPFbln9u9UwRAmyz7_XzL_Zyr0bYcMlX3hD7Cz5ncqU0_6Vq8BriIk5zOlqX0DIQ"/>
+<span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded bg-[#FFD166] text-black font-label-sm text-label-sm font-bold tracking-wider">
+              NEW
+            </span>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0B0D12] via-[#0B0D12]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 flex flex-col justify-end">
+<h3 class="font-title-lg text-title-lg font-bold text-on-surface leading-snug">Blood of Edo</h3>
+<p class="text-on-surface-variant text-label-sm line-clamp-1 mb-2">Martial Action Fantasy</p>
+<div class="flex items-center gap-2">
+<button class="flex-1 py-2 rounded-lg bg-primary-container hover:bg-[#C92E42] text-white font-label-md text-label-md font-semibold flex items-center justify-center gap-1 transition-colors" onclick="triggerToast('Playing Blood of Edo...')">
+<span class="material-symbols-outlined text-sm material-symbols-fill" data-icon="play_arrow">play_arrow</span>
+<span>Play</span>
+</button>
+<button class="w-9 h-9 rounded-lg bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition-colors" onclick="triggerToast('Added Blood of Edo to My List')">
+<span class="material-symbols-outlined text-base" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- New Release 5 -->
+<div class="flex-none w-[200px] md:w-[230px] aspect-[2/3] group relative rounded-xl bg-surface-container border border-white/10 overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105 hover:z-30 hover:shadow-2xl hover:border-white/25">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A dark surrealist 2:3 poster of a human silhouette dissolving into thousands of luminous golden particles against a midnight void, ultra high-fidelity typography space." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWtUdEANBwx5WXjiGaTH8MEwvWIzBsf162VQwBb9Xf9HrkLTlXjc-COHjSnO2xvQQvAeWXALnFK-LIYm3x_4mEvmQ32XubmmTuIrLxJxtm06JjnUcC3YXmAoNT11gM4qxBX1cFI4xw6oiHboJG6mHsC1fmKex84rhfp9bEUCM_WTlr_jwJq91pcEqun6n_iQ7JaGP39WQGfI06NIw20QlYEb2C1pitRD4ZsLzruRMHsOzGSxaiWbwDGw"/>
+<span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded bg-[#FFD166] text-black font-label-sm text-label-sm font-bold tracking-wider">
+              NEW
+            </span>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0B0D12] via-[#0B0D12]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 flex flex-col justify-end">
+<h3 class="font-title-lg text-title-lg font-bold text-on-surface leading-snug">Disintegration</h3>
+<p class="text-on-surface-variant text-label-sm line-clamp-1 mb-2">Psychological Drama</p>
+<div class="flex items-center gap-2">
+<button class="flex-1 py-2 rounded-lg bg-primary-container hover:bg-[#C92E42] text-white font-label-md text-label-md font-semibold flex items-center justify-center gap-1 transition-colors" onclick="triggerToast('Playing Disintegration...')">
+<span class="material-symbols-outlined text-sm material-symbols-fill" data-icon="play_arrow">play_arrow</span>
+<span>Play</span>
+</button>
+<button class="w-9 h-9 rounded-lg bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition-colors" onclick="triggerToast('Added Disintegration to My List')">
+<span class="material-symbols-outlined text-base" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Row 4: Critically Acclaimed & Award Winners -->
+<section class="space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">Critically Acclaimed &amp; Award Winners</h2>
+<span class="text-secondary font-label-md text-label-md flex items-center gap-1">
+<span class="material-symbols-outlined material-symbols-fill text-sm" data-icon="military_tech">military_tech</span>
+              Festival Selections
+            </span>
+</div>
+<div class="flex items-center gap-2">
+<button aria-label="Scroll left" class="w-9 h-9 rounded-lg bg-surface-container border border-white/10 flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95" onclick="scrollRow('critics-row', -1)">
+<span class="material-symbols-outlined text-lg" data-icon="chevron_left">chevron_left</span>
+</button>
+<button aria-label="Scroll right" class="w-9 h-9 rounded-lg bg-surface-container border border-white/10 flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95" onclick="scrollRow('critics-row', 1)">
+<span class="material-symbols-outlined text-lg" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="flex gap-5 overflow-x-auto hide-scrollbar scroll-smooth py-4" id="critics-row">
+<!-- Acclaimed 1 -->
+<div class="flex-none w-[200px] md:w-[230px] aspect-[2/3] group relative rounded-xl bg-surface-container border border-white/10 overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105 hover:z-30 hover:shadow-2xl hover:border-white/25">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A masterwork vertical 2:3 poster of a solitary violinist playing on an iceberg in an Arctic twilight sea, warm glowing lamp nearby, breathtaking fine-art cinematography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0LSIqrYF--_reVLq-jyk-ptvM-hruotJvpiriUyTo5jkeV8zfCGP9U31zCVfiCZDVCZgPLLfs8KtyFMqYbAIWo1eu8AS-dfKfDDnFB0mYct-D4e-QAhAaERu2FxUFoO-NSWIko9JW9uLdN9h6PRDcOWsIl9C4exjIT8ZzNWPcP8TAeSqS2LTbeY9Nyyfv0yHj3jePRRJsUGb8Ja_m9Skz2WK6h_Crof_qLWqu3opJoCros1NW2SHE0Q"/>
+<div class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded bg-black/75 backdrop-blur-md border border-white/15 text-[#FFD166] font-label-sm text-label-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined material-symbols-fill text-xs" data-icon="star">star</span>
+              98%
+            </div>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0B0D12] via-[#0B0D12]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 flex flex-col justify-end">
+<span class="text-[#FFD166] font-label-sm text-label-sm tracking-wider uppercase font-bold mb-1">Palme d'Or Winner</span>
+<h3 class="font-title-lg text-title-lg font-bold text-on-surface leading-snug">The Glacial Nocturne</h3>
+<div class="flex items-center gap-2 mt-1 mb-3">
+<span class="text-white/60 text-label-sm">2h 18m</span>
+<span class="px-1.5 py-0.2 rounded border border-white/20 text-white/70 text-label-sm">PG-13</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex-1 py-2 rounded-lg bg-primary-container hover:bg-[#C92E42] text-white font-label-md text-label-md font-semibold flex items-center justify-center gap-1 transition-colors" onclick="triggerToast('Playing The Glacial Nocturne...')">
+<span class="material-symbols-outlined text-sm material-symbols-fill" data-icon="play_arrow">play_arrow</span>
+<span>Play</span>
+</button>
+<button class="w-9 h-9 rounded-lg bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition-colors" onclick="triggerToast('Added The Glacial Nocturne to My List')">
+<span class="material-symbols-outlined text-base" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Acclaimed 2 -->
+<div class="flex-none w-[200px] md:w-[230px] aspect-[2/3] group relative rounded-xl bg-surface-container border border-white/10 overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105 hover:z-30 hover:shadow-2xl hover:border-white/25">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A vertical 2:3 photographic poster showing a high-society masquerade ball in a dimly lit Venetian palazzo, ornate gilded mirrors and dark crimson velvet shadows, sumptuous period drama lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_lQI0miTqRgGGARRjkt94hg1rt7PNcdeZTiBzj8Zxr81al1ZuNL1UR5Q3xS2plT4kr6BTHTRGQg3pZUrfNeqpkNFFcorJ03Wn1vzQxCCF0KLqed9CN1i_Dykr4-XkorbDbwgDJAdOU2w_G827lbri9MPmMoFHRhQSJSWkZ7u7PTT16HDCr0Re4T1-vXSRteGn875zJeti4x-so7-qxQIxLfxlfhLrZx5-BzGQYjJxCHUvej-FmEuBew"/>
+<div class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded bg-black/75 backdrop-blur-md border border-white/15 text-[#FFD166] font-label-sm text-label-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined material-symbols-fill text-xs" data-icon="star">star</span>
+              96%
+            </div>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0B0D12] via-[#0B0D12]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 flex flex-col justify-end">
+<span class="text-[#FFD166] font-label-sm text-label-sm tracking-wider uppercase font-bold mb-1">Academy Award Winner</span>
+<h3 class="font-title-lg text-title-lg font-bold text-on-surface leading-snug">Venetian Whispers</h3>
+<div class="flex items-center gap-2 mt-1 mb-3">
+<span class="text-white/60 text-label-sm">2h 34m</span>
+<span class="px-1.5 py-0.2 rounded border border-white/20 text-white/70 text-label-sm">R</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex-1 py-2 rounded-lg bg-primary-container hover:bg-[#C92E42] text-white font-label-md text-label-md font-semibold flex items-center justify-center gap-1 transition-colors" onclick="triggerToast('Playing Venetian Whispers...')">
+<span class="material-symbols-outlined text-sm material-symbols-fill" data-icon="play_arrow">play_arrow</span>
+<span>Play</span>
+</button>
+<button class="w-9 h-9 rounded-lg bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition-colors" onclick="triggerToast('Added Venetian Whispers to My List')">
+<span class="material-symbols-outlined text-base" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Acclaimed 3 -->
+<div class="flex-none w-[200px] md:w-[230px] aspect-[2/3] group relative rounded-xl bg-surface-container border border-white/10 overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105 hover:z-30 hover:shadow-2xl hover:border-white/25">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A 2:3 vertical cinematic portrait of a world-weary mathematician working in a candlelit study covered in chalkboards filled with quantum formulae, dramatic chiaroscuro lighting, dark rich shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgwpCT030Cvw5gfdMKL02Mn99cMZkFueDJr7aoxLEl-LZFNCBzI5MjJxI-56VP9gmFxM8vrm9NwCpGCnOw-oJtvJJPd14QzZUKhovdmm85lTqoEsPgmBzZRmxWXSHRsnPDyU0FeBxtjNdW1994kBV0b5CBanPaDOBExN3BFc0w500d-aMWQCRzc94pTsPn4ZAuf1vKdAP7kTKLilYHUbcrkjqbWdAw9_F5_EWJH2x1tqpyDuKsU94Nmw"/>
+<div class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded bg-black/75 backdrop-blur-md border border-white/15 text-[#FFD166] font-label-sm text-label-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined material-symbols-fill text-xs" data-icon="star">star</span>
+              95%
+            </div>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0B0D12] via-[#0B0D12]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 flex flex-col justify-end">
+<span class="text-[#FFD166] font-label-sm text-label-sm tracking-wider uppercase font-bold mb-1">Golden Lion Winner</span>
+<h3 class="font-title-lg text-title-lg font-bold text-on-surface leading-snug">The Axiom Problem</h3>
+<div class="flex items-center gap-2 mt-1 mb-3">
+<span class="text-white/60 text-label-sm">1h 56m</span>
+<span class="px-1.5 py-0.2 rounded border border-white/20 text-white/70 text-label-sm">PG-13</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex-1 py-2 rounded-lg bg-primary-container hover:bg-[#C92E42] text-white font-label-md text-label-md font-semibold flex items-center justify-center gap-1 transition-colors" onclick="triggerToast('Playing The Axiom Problem...')">
+<span class="material-symbols-outlined text-sm material-symbols-fill" data-icon="play_arrow">play_arrow</span>
+<span>Play</span>
+</button>
+<button class="w-9 h-9 rounded-lg bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition-colors" onclick="triggerToast('Added The Axiom Problem to My List')">
+<span class="material-symbols-outlined text-base" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Acclaimed 4 -->
+<div class="flex-none w-[200px] md:w-[230px] aspect-[2/3] group relative rounded-xl bg-surface-container border border-white/10 overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105 hover:z-30 hover:shadow-2xl hover:border-white/25">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A 2:3 vertical movie poster of a lighthouse keeper in rugged wool standing in gale-force winds atop an Atlantic cliffside beacon at night, luminous beam slicing through darkness, hyper-textured drama." src="https://lh3.googleusercontent.com/aida-public/AB6AXuClY4k_v8HLYLSaDvqVBe2jfI8Q8P4ev5TONXrIunKMjhfMALald-Wf5D8zKbmgkdtHCcW3tpuKD2-6Z6iyQ0CJdJrMKjHvUfJbeiPojL9FivcaQSK244I2nnRgQ-kgoIM6iYPn0hf8h8J0M-NrLXZryPtRuXYN73qjMMSTSAZdOOQrVQ372jITMOD4Jmqn0THcO-Hj_qojyb4DIhZiwTE9WyfJh_iE6xYmAK9njGy7fmGLCGUZPRYqHA"/>
+<div class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded bg-black/75 backdrop-blur-md border border-white/15 text-[#FFD166] font-label-sm text-label-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined material-symbols-fill text-xs" data-icon="star">star</span>
+              97%
+            </div>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0B0D12] via-[#0B0D12]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 flex flex-col justify-end">
+<span class="text-[#FFD166] font-label-sm text-label-sm tracking-wider uppercase font-bold mb-1">Best Cinematography</span>
+<h3 class="font-title-lg text-title-lg font-bold text-on-surface leading-snug">North Beacon Light</h3>
+<div class="flex items-center gap-2 mt-1 mb-3">
+<span class="text-white/60 text-label-sm">2h 05m</span>
+<span class="px-1.5 py-0.2 rounded border border-white/20 text-white/70 text-label-sm">R</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex-1 py-2 rounded-lg bg-primary-container hover:bg-[#C92E42] text-white font-label-md text-label-md font-semibold flex items-center justify-center gap-1 transition-colors" onclick="triggerToast('Playing North Beacon Light...')">
+<span class="material-symbols-outlined text-sm material-symbols-fill" data-icon="play_arrow">play_arrow</span>
+<span>Play</span>
+</button>
+<button class="w-9 h-9 rounded-lg bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition-colors" onclick="triggerToast('Added North Beacon Light to My List')">
+<span class="material-symbols-outlined text-base" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Interactive Toast Notification Container -->
+<div class="fixed bottom-8 right-8 z-50 pointer-events-none flex flex-col gap-3" id="toast-container">
+<!-- Dynamic toasts inject here via JS -->
+</div>
+<!-- Shared Web Footer Component -->
+<footer class="docked full-width bottom bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant/15 dark:border-outline-variant/15 flat no shadows">
+<div class="w-full max-w-[1800px] mx-auto px-6 lg:px-12 py-12 flex flex-col md:flex-row justify-between items-center gap-6">
+<!-- Left: Logo & Legal Disclaimer -->
+<div class="flex flex-col items-center md:items-start gap-2">
+<div class="font-title-md text-title-md font-bold text-on-surface dark:text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined material-symbols-fill text-primary-container" data-icon="movie">movie</span>
+<span>CineStream</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant/80 text-center md:text-left">
+          © 2024 CineStream Inc. All rights reserved. Ultra-HD &amp; Atmos playback supported.
+        </p>
+</div>
+<!-- Right: Footer Navigation Links exactly from JSON -->
+<nav class="flex flex-wrap items-center justify-center gap-6 lg:gap-8 font-label-sm text-label-sm">
+<a class="text-on-surface-variant/80 dark:text-on-surface-variant/80 hover:text-on-surface dark:hover:text-on-surface transition-colors active:opacity-80" href="#">Audio &amp; Subtitles</a>
+<a class="text-on-surface-variant/80 dark:text-on-surface-variant/80 hover:text-on-surface dark:hover:text-on-surface transition-colors active:opacity-80" href="#">Media Center</a>
+<a class="text-on-surface-variant/80 dark:text-on-surface-variant/80 hover:text-on-surface dark:hover:text-on-surface transition-colors active:opacity-80" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant/80 dark:text-on-surface-variant/80 hover:text-on-surface dark:hover:text-on-surface transition-colors active:opacity-80" href="#">Terms of Service</a>
+<a class="text-on-surface-variant/80 dark:text-on-surface-variant/80 hover:text-on-surface dark:hover:text-on-surface transition-colors active:opacity-80" href="#">Help Center</a>
+</nav>
+</div>
+</footer>
+<!-- Micro-interactions Script -->
+<script>
+    // Smooth scroll for horizontal rail carousels
+    function scrollRow(rowId, direction) {
+      const el = document.getElementById(rowId);
+      if (!el) return;
+      const scrollAmount = direction * (el.clientWidth * 0.75);
+      el.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+
+    // Dynamic Toast Notification Trigger
+    function triggerToast(message) {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+
+      const toast = document.createElement('div');
+      toast.className = 'pointer-events-auto flex items-center gap-3 px-4 py-3 bg-[#181B24] border border-white/15 rounded-xl shadow-2xl backdrop-blur-md text-on-surface font-body-md text-body-md transform translate-y-4 opacity-0 transition-all duration-300';
+      toast.innerHTML = `
+        <span class="material-symbols-outlined text-primary-container text-xl" data-icon="check_circle">check_circle</span>
+        <span>${message}</span>
+      `;
+      
+      container.appendChild(toast);
+
+      // Trigger enter animation
+      requestAnimationFrame(() => {
+        toast.classList.remove('translate-y-4', 'opacity-0');
+        toast.classList.add('translate-y-0', 'opacity-100');
+      });
+
+      // Dismiss after 3.2s
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-4', 'opacity-0');
+        setTimeout(() => toast.remove(), 350);
+      }, 3200);
+    }
+  </script>
+</body></html>

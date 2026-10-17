@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>CineStream - Ultra-HD & Atmos Streaming</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#ffb3b4",
+            "primary-container": "#ff5263",
+            "on-primary": "#680016",
+            "background": "#111318",
+            "surface": "#111318",
+            "surface-container": "#1e1f25",
+            "surface-container-low": "#1a1b21",
+            "surface-container-high": "#282a2f",
+            "surface-container-highest": "#33353a",
+            "on-surface": "#e2e2e9",
+            "on-surface-variant": "#e3bebd",
+            "outline-variant": "#5b4040",
+            "tertiary": "#6ddab7",
+            "secondary": "#edc157",
+            "secondary-container": "#906d00",
+            "secondary-fixed": "#ffdf9b"
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body class="bg-[#0B0D12] text-on-surface antialiased font-sans selection:bg-primary-container selection:text-white overflow-x-hidden min-h-screen">
+
+  <!-- ==================== MAIN APP VIEW ==================== -->
+  <div id="main-view" class="relative z-10 transition-opacity duration-300">
+    <!-- Persistent Web Header TopNavBar -->
+    <header class="top-0 sticky z-50 bg-[#12141B]/90 backdrop-blur-md border-b border-white/10 shadow-sm">
+      <div class="w-full max-w-[1800px] mx-auto px-6 lg:px-12 h-16 flex items-center justify-between gap-8">
+        <!-- Left: Logo & Core Navigation -->
+        <div class="flex items-center gap-10">
+          <a class="text-xl font-bold tracking-tight text-white uppercase flex items-center gap-2.5 cursor-pointer" onclick="navigateTab('home')">
+            <span class="material-symbols-outlined material-symbols-fill text-[#ff5263] text-2xl">movie</span>
+            <span class="bg-gradient-to-r from-white via-white to-white/70 bg-clip-text text-transparent">CineStream</span>
+          </a>
+          <!-- Desktop Navigation Links -->
+          <nav class="hidden md:flex items-center gap-7">
+            <button onclick="navigateTab('home')" id="nav-home" class="nav-link text-white font-semibold border-b-2 border-primary-container pb-1 text-[15px] transition-colors">Home</button>
+            <button onclick="navigateTab('movies')" id="nav-movies" class="nav-link text-[#B6BAC3] hover:text-white font-medium text-[15px] transition-colors">Movies</button>
+            <button onclick="navigateTab('series')" id="nav-series" class="nav-link text-[#B6BAC3] hover:text-white font-medium text-[15px] transition-colors">TV Shows</button>
+            <button onclick="navigateTab('trending')" id="nav-trending" class="nav-link text-[#B6BAC3] hover:text-white font-medium text-[15px] transition-colors">New & Popular</button>
+            <button onclick="navigateTab('watchlist')" id="nav-watchlist" class="nav-link text-[#B6BAC3] hover:text-white font-medium text-[15px] transition-colors flex items-center gap-1.5">
+              <span>My List</span>
+              <span id="watchlist-count-badge" class="hidden text-xs bg-primary-container/30 text-primary px-1.5 py-0.2 rounded-full font-bold">0</span>
+            </button>
+          </nav>
+        </div>
+
+        <!-- Right: Search, Notifications, Profile Actions -->
+        <div class="flex items-center gap-4">
+          <!-- Expanding Search Bar -->
+          <div class="relative flex items-center">
+            <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/50 pointer-events-none material-symbols-outlined text-[20px]">search</span>
+            <input id="search-input" class="w-48 lg:w-72 pl-10 pr-4 py-2 bg-[#181B24] border border-white/10 rounded-xl text-white placeholder:text-[#7B8090] text-sm focus:outline-none focus:border-primary-container focus:w-80 transition-all duration-300" placeholder="Titles, genres, cast..." type="text"/>
+            <!-- Live Search Dropdown -->
+            <div id="search-dropdown" class="hidden absolute top-12 left-0 right-0 lg:w-80 bg-[#12141B] border border-white/15 rounded-xl shadow-2xl overflow-hidden z-50 max-h-96 overflow-y-auto">
+              <div id="search-results" class="divide-y divide-white/5"></div>
+            </div>
+          </div>
+
+          <!-- Notification Bell -->
+          <div class="relative">
+            <button onclick="toggleNotifications()" aria-label="Notifications" class="p-2.5 rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition-all active:scale-95">
+              <span class="material-symbols-outlined">notifications</span>
+              <span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-primary-container ring-2 ring-[#0B0D12]"></span>
+            </button>
+            <!-- Notification Panel -->
+            <div id="notifications-panel" class="hidden absolute right-0 top-12 w-80 bg-[#181B24] border border-white/15 rounded-xl shadow-2xl p-4 z-50">
+              <div class="flex items-center justify-between pb-3 border-b border-white/10">
+                <span class="text-sm font-semibold text-white">Notifications</span>
+                <span class="text-xs text-primary font-medium cursor-pointer" onclick="clearNotifications()">Mark all read</span>
+              </div>
+              <div class="py-2 space-y-2.5 text-xs text-[#B6BAC3]">
+                <div class="p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors cursor-pointer" onclick="openDetailModal('chrono-void')">
+                  <p class="text-white font-medium">New Episode Released</p>
+                  <p class="text-[#7B8090]">Chrono : Void S1:E4 "Singularity Point" is now streaming in 4K HDR.</p>
+                </div>
+                <div class="p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors cursor-pointer" onclick="openDetailModal('neon-drifter')">
+                  <p class="text-white font-medium">Trending #1 Today</p>
+                  <p class="text-[#7B8090]">Neon Drifter : 2099 hits the Top 10 Global chart.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Profile Avatar Button -->
+          <div class="relative">
+            <button onclick="toggleProfileMenu()" class="flex items-center gap-2 p-1 rounded-xl hover:bg-white/10 transition-all active:scale-95 group focus:outline-none focus:ring-1 focus:ring-primary-container">
+              <img alt="User profile avatar" class="w-9 h-9 rounded-lg object-cover border border-white/15 group-hover:border-primary-container transition-colors" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80"/>
+              <span class="hidden lg:inline-block material-symbols-outlined text-white/70 text-sm group-hover:text-white transition-transform duration-200">expand_more</span>
+            </button>
+            <!-- Profile Dropdown -->
+            <div id="profile-dropdown" class="hidden absolute right-0 top-12 w-56 bg-[#181B24] border border-white/15 rounded-xl shadow-2xl py-2 z-50 text-sm">
+              <div class="px-4 py-2 border-b border-white/10">
+                <p class="font-semibold text-white">Alex Mercer</p>
+                <p class="text-xs text-[#7B8090]">alex.mercer@cinestream.io</p>
+                <span class="inline-block mt-1 px-2 py-0.5 rounded bg-primary-container/20 text-primary text-[10px] font-bold uppercase">4K VIP Member</span>
+              </div>
+              <a href="#" onclick="navigateTab('watchlist')" class="flex items-center gap-2.5 px-4 py-2.5 hover:bg-white/10 text-[#B6BAC3] hover:text-white">
+                <span class="material-symbols-outlined text-sm">bookmark</span> My Watchlist
+              </a>
+              <a href="#" onclick="triggerToast('Viewing stream playback settings...')" class="flex items-center gap-2.5 px-4 py-2.5 hover:bg-white/10 text-[#B6BAC3] hover:text-white">
+                <span class="material-symbols-outlined text-sm">settings</span> Playback Settings
+              </a>
+              <div class="border-t border-white/10 my-1"></div>
+              <a href="#" onclick="triggerToast('Signing out...')" class="flex items-center gap-2.5 px-4 py-2.5 hover:bg-white/10 text-red-400">
+                <span class="material-symbols-outlined text-sm">logout</span> Sign Out
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="w-full max-w-[1800px] mx-auto min-h-screen relative pb-24">
+      
+      <!-- HERO BANNER SECTION -->
+      <section id="hero-banner" class="relative w-full h-[720px] min-h-[560px] max-h-[800px] flex items-end pb-16 px-6 lg:px-12 overflow-hidden">
+        <!-- Hero Background Visual Layer -->
+        <div id="hero-backdrop" class="absolute inset-0 bg-cover bg-center transition-all duration-1000 scale-100">
+          <!-- Complex Cinematic Scrims -->
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0B0D12] via-[#0B0D12]/60 to-transparent"></div>
+          <div class="absolute inset-0 bg-gradient-to-r from-[#0B0D12] via-[#0B0D12]/75 to-transparent w-full md:w-3/4"></div>
+          <div class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#0B0D12]/80 to-transparent"></div>
+        </div>
+
+        <!-- Hero Content Info Block -->
+        <div class="relative z-10 max-w-2xl flex flex-col gap-4 mb-2">
+          <!-- Badges & Ratings Row -->
+          <div id="hero-badges" class="flex flex-wrap items-center gap-3">
+            <span class="px-2.5 py-1 rounded bg-[#FFD166]/15 border border-[#FFD166]/30 text-[#FFD166] text-xs uppercase tracking-wider flex items-center gap-1.5 font-bold">
+              <span class="material-symbols-outlined material-symbols-fill text-[14px]">grade</span>
+              <span id="hero-rating">4.9</span> Rating
+            </span>
+            <span class="px-2 py-0.5 rounded bg-white/[0.06] border border-white/[0.08] text-[#B6BAC3] text-xs font-semibold tracking-wider">
+              4K ULTRA-HD
+            </span>
+            <span class="px-2 py-0.5 rounded bg-white/[0.06] border border-white/[0.08] text-[#B6BAC3] text-xs font-semibold tracking-wider">
+              DOLBY ATMOS
+            </span>
+            <span id="hero-age-rating" class="px-2 py-0.5 rounded bg-white/[0.06] border border-white/[0.08] text-[#B6BAC3] text-xs">
+              16+
+            </span>
+          </div>
+
+          <!-- Featured Title -->
+          <h1 id="hero-title" class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-none drop-shadow-2xl">
+            CHRONO : VOID
+          </h1>
+
+          <!-- Synopsis -->
+          <p id="hero-synopsis" class="text-base sm:text-lg text-white/90 line-clamp-2 max-w-xl text-shadow leading-relaxed">
+            When the temporal bridge destabilizes at humanity's furthest orbital outpost, an elite salvage navigator must venture past the event horizon before timeline collapse becomes permanent.
+          </p>
+
+          <!-- CTA Buttons & Direct Actions -->
+          <div class="flex flex-wrap items-center gap-4 pt-2">
+            <!-- Primary Red CTA Play -->
+            <button id="hero-play-btn" class="h-12 px-7 rounded-xl bg-primary-container hover:bg-[#C92E42] text-white font-semibold flex items-center gap-2.5 transition-all duration-200 active:scale-95 shadow-lg shadow-primary-container/25 focus:ring-2 focus:ring-white focus:outline-none">
+              <span class="material-symbols-outlined material-symbols-fill text-2xl">play_arrow</span>
+              <span>Play</span>
+            </button>
+            <!-- Secondary Translucent CTA More Info -->
+            <button id="hero-info-btn" class="h-12 px-6 rounded-xl bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/15 text-white font-semibold flex items-center gap-2.5 transition-all duration-200 active:scale-95">
+              <span class="material-symbols-outlined text-2xl">info</span>
+              <span>More Info</span>
+            </button>
+            <!-- Add to List Quick Toggle -->
+            <button id="hero-watchlist-btn" aria-label="Add to List" class="w-12 h-12 rounded-xl bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/15 text-white flex items-center justify-center transition-all duration-200 active:scale-95 group">
+              <span id="hero-watchlist-icon" class="material-symbols-outlined group-hover:scale-110 transition-transform">add</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Hero Carousel Indicators & Audio Toggle -->
+        <div class="absolute right-6 lg:right-12 bottom-16 z-10 flex items-center gap-6">
+          <button id="hero-audio-btn" aria-label="Toggle Sound" class="w-11 h-11 rounded-full bg-[#1e1f25]/70 backdrop-blur-md border border-white/10 text-white flex items-center justify-center hover:bg-[#282a2f] transition-colors active:scale-95">
+            <span class="material-symbols-outlined">volume_up</span>
+          </button>
+          <!-- Carousel Pagination Dots -->
+          <div id="hero-carousel-dots" class="flex items-center gap-2"></div>
+        </div>
+      </section>
+
+      <!-- CONTENT SHELVES / ROWS -->
+      <div class="px-6 lg:px-12 space-y-12 relative z-20 -mt-6">
+        
+        <!-- ROW 1: CONTINUE WATCHING (Dynamic from backend /api/continue-watching) -->
+        <section id="continue-watching-section" class="space-y-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-primary-container text-2xl">history</span>
+              <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Continue Watching</h2>
+            </div>
+            <span class="text-xs text-[#7B8090]">Synced across your devices</span>
+          </div>
+          <!-- Horizontal Scroll Container -->
+          <div class="relative group/shelf">
+            <button onclick="scrollRow('continue-watching-row', -400)" class="absolute left-0 top-1/2 -translate-y-1/2 -ml-4 z-30 w-10 h-10 rounded-full bg-[#12141B]/90 border border-white/10 text-white flex items-center justify-center opacity-0 group-hover/shelf:opacity-100 transition-opacity shadow-xl hover:bg-primary-container">
+              <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+            <div id="continue-watching-row" class="flex items-center gap-4 overflow-x-auto hide-scrollbar py-2 scroll-smooth">
+              <!-- Dynamically populated -->
+            </div>
+            <button onclick="scrollRow('continue-watching-row', 400)" class="absolute right-0 top-1/2 -translate-y-1/2 -mr-4 z-30 w-10 h-10 rounded-full bg-[#12141B]/90 border border-white/10 text-white flex items-center justify-center opacity-0 group-hover/shelf:opacity-100 transition-opacity shadow-xl hover:bg-primary-container">
+              <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- ROW 2: TRENDING NOW -->
+        <section class="space-y-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-[#FFD166] text-2xl">trending_up</span>
+              <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Trending Now</h2>
+            </div>
+            <a href="#" onclick="navigateTab('trending')" class="text-sm font-semibold text-primary hover:text-white transition-colors flex items-center gap-1">
+              <span>Explore All</span>
+              <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </a>
+          </div>
+          <div class="relative group/shelf">
+            <button onclick="scrollRow('trending-row', -400)" class="absolute left-0 top-1/2 -translate-y-1/2 -ml-4 z-30 w-10 h-10 rounded-full bg-[#12141B]/90 border border-white/10 text-white flex items-center justify-center opacity-0 group-hover/shelf:opacity-100 transition-opacity shadow-xl hover:bg-primary-container">
+              <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+            <div id="trending-row" class="flex items-center gap-4 overflow-x-auto hide-scrollbar py-3 scroll-smooth">
+              <!-- Dynamically populated -->
+            </div>
+            <button onclick="scrollRow('trending-row', 400)" class="absolute right-0 top-1/2 -translate-y-1/2 -mr-4 z-30 w-10 h-10 rounded-full bg-[#12141B]/90 border border-white/10 text-white flex items-center justify-center opacity-0 group-hover/shelf:opacity-100 transition-opacity shadow-xl hover:bg-primary-container">
+              <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- ROW 3: TOP 10 GLOBAL (Numbered cards) -->
+        <section class="space-y-4">
+          <div class="flex items-center gap-3">
+            <span class="px-2.5 py-0.5 rounded bg-primary-container/20 border border-primary-container/40 text-primary text-xs font-bold uppercase tracking-wider">Top 10</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Top 10 in the World Today</h2>
+          </div>
+          <div class="relative group/shelf">
+            <button onclick="scrollRow('top10-row', -400)" class="absolute left-0 top-1/2 -translate-y-1/2 -ml-4 z-30 w-10 h-10 rounded-full bg-[#12141B]/90 border border-white/10 text-white flex items-center justify-center opacity-0 group-hover/shelf:opacity-100 transition-opacity shadow-xl hover:bg-primary-container">
+              <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+            <div id="top10-row" class="flex items-center gap-6 overflow-x-auto hide-scrollbar py-3 scroll-smooth">
+              <!-- Dynamically populated with numbered ranks -->
+            </div>
+            <button onclick="scrollRow('top10-row', 400)" class="absolute right-0 top-1/2 -translate-y-1/2 -mr-4 z-30 w-10 h-10 rounded-full bg-[#12141B]/90 border border-white/10 text-white flex items-center justify-center opacity-0 group-hover/shelf:opacity-100 transition-opacity shadow-xl hover:bg-primary-container">
+              <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- ROW 4: SCI-FI & COSMIC WORLDS -->
+        <section class="space-y-4">
+          <div class="flex items-center justify-between">
+            <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Sci-Fi &amp; Cosmic Dimensions</h2>
+            <span class="text-xs text-[#7B8090]">4K UHD • Spatial Audio</span>
+          </div>
+          <div class="relative group/shelf">
+            <button onclick="scrollRow('scifi-row', -400)" class="absolute left-0 top-1/2 -translate-y-1/2 -ml-4 z-30 w-10 h-10 rounded-full bg-[#12141B]/90 border border-white/10 text-white flex items-center justify-center opacity-0 group-hover/shelf:opacity-100 transition-opacity shadow-xl hover:bg-primary-container">
+              <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+            <div id="scifi-row" class="flex items-center gap-4 overflow-x-auto hide-scrollbar py-3 scroll-smooth">
+              <!-- Dynamically populated -->
+            </div>
+            <button onclick="scrollRow('scifi-row', 400)" class="absolute right-0 top-1/2 -translate-y-1/2 -mr-4 z-30 w-10 h-10 rounded-full bg-[#12141B]/90 border border-white/10 text-white flex items-center justify-center opacity-0 group-hover/shelf:opacity-100 transition-opacity shadow-xl hover:bg-primary-container">
+              <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- ROW 5: ACTION & ADVENTURE -->
+        <section class="space-y-4">
+          <div class="flex items-center justify-between">
+            <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Action &amp; Adrenaline Blockbusters</h2>
+            <span class="text-xs text-[#7B8090]">High Octane</span>
+          </div>
+          <div class="relative group/shelf">
+            <button onclick="scrollRow('action-row', -400)" class="absolute left-0 top-1/2 -translate-y-1/2 -ml-4 z-30 w-10 h-10 rounded-full bg-[#12141B]/90 border border-white/10 text-white flex items-center justify-center opacity-0 group-hover/shelf:opacity-100 transition-opacity shadow-xl hover:bg-primary-container">
+              <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+            <div id="action-row" class="flex items-center gap-4 overflow-x-auto hide-scrollbar py-3 scroll-smooth">
+              <!-- Dynamically populated -->
+            </div>
+            <button onclick="scrollRow('action-row', 400)" class="absolute right-0 top-1/2 -translate-y-1/2 -mr-4 z-30 w-10 h-10 rounded-full bg-[#12141B]/90 border border-white/10 text-white flex items-center justify-center opacity-0 group-hover/shelf:opacity-100 transition-opacity shadow-xl hover:bg-primary-container">
+              <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 bg-[#0C0E13] py-12 px-6 lg:px-12 text-[#7B8090] text-sm">
+      <div class="max-w-[1800px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-3">
+          <span class="material-symbols-outlined text-primary-container">movie</span>
+          <span class="font-bold text-white text-base">CineStream</span>
+          <span>© 2026 CineStream Inc. Powered by Google Stitch UI.</span>
+        </div>
+        <div class="flex items-center gap-6 text-xs">
+          <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+          <a href="#" class="hover:text-white transition-colors">Cookie Preferences</a>
+          <a href="#" class="hover:text-white transition-colors">Help Center</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ==================== TITLE DETAIL MODAL ==================== -->
+  <div id="detail-modal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-[#0B0D12]/80 backdrop-blur-xl flex items-center justify-center p-4 sm:p-6 lg:p-10 fade-in">
+    <div class="relative w-full max-w-[1240px] bg-[#12141B] rounded-[20px] border border-white/[0.08] shadow-[0_24px_64px_-12px_rgba(0,0,0,0.85)] overflow-hidden my-auto flex flex-col">
+      <!-- Close Button (X) -->
+      <button onclick="closeDetailModal()" aria-label="Close modal" class="absolute top-5 right-5 z-30 w-10 h-10 rounded-full bg-[#181B24]/80 hover:bg-[#282a2f] border border-white/10 text-white flex items-center justify-center transition-all duration-200 active:scale-90">
+        <span class="material-symbols-outlined text-xl">close</span>
+      </button>
+
+      <!-- Modal Hero Backdrop Banner -->
+      <div class="relative w-full h-[360px] sm:h-[460px] lg:h-[520px] overflow-hidden">
+        <img id="modal-banner-img" alt="Title banner" class="w-full h-full object-cover object-top filter brightness-95" src=""/>
+        <div class="absolute inset-0 bg-gradient-to-t from-[#12141B] via-[#12141B]/40 to-transparent"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-[#12141B] via-[#12141B]/50 to-transparent"></div>
+        
+        <!-- Floating Actions on Modal Hero -->
+        <div class="absolute bottom-8 left-6 sm:left-10 z-20 flex flex-col gap-3">
+          <h2 id="modal-title" class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight drop-shadow-xl"></h2>
+          <p id="modal-tagline" class="text-sm sm:text-base text-primary font-medium italic"></p>
+          <div class="flex items-center gap-4 pt-2">
+            <button id="modal-play-btn" class="h-12 px-8 rounded-xl bg-primary-container hover:bg-[#C92E42] text-white font-semibold flex items-center gap-2.5 transition-all duration-200 active:scale-95 shadow-lg shadow-primary-container/25">
+              <span class="material-symbols-outlined material-symbols-fill text-2xl">play_arrow</span>
+              <span>Play</span>
+            </button>
+            <button id="modal-watchlist-btn" class="w-12 h-12 rounded-xl bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/15 text-white flex items-center justify-center transition-all active:scale-95">
+              <span id="modal-watchlist-icon" class="material-symbols-outlined">add</span>
+            </button>
+            <button id="modal-rate-btn" onclick="toggleRateMovie()" class="w-12 h-12 rounded-xl bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/15 text-white flex items-center justify-center transition-all active:scale-95">
+              <span id="modal-rate-icon" class="material-symbols-outlined">thumb_up</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Body Content -->
+      <div class="p-6 sm:p-10 space-y-8 bg-[#12141B]">
+        <!-- Meta Row & Overview Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div class="lg:col-span-2 space-y-4">
+            <!-- Metadata Chips -->
+            <div class="flex flex-wrap items-center gap-2.5 text-xs text-[#B6BAC3]">
+              <span id="modal-match" class="text-[#3ECF8E] font-bold">98% Match</span>
+              <span id="modal-year" class="font-medium">2026</span>
+              <span id="modal-age" class="px-1.5 py-0.5 rounded border border-white/15 text-[11px]">16+</span>
+              <span id="modal-runtime" class="font-medium">2h 15m</span>
+              <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-white font-semibold text-[11px]">4K ULTRA-HD</span>
+              <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-white font-semibold text-[11px]">DOLBY ATMOS</span>
+            </div>
+            <!-- Full Synopsis -->
+            <p id="modal-synopsis" class="text-sm sm:text-base text-white/90 leading-relaxed font-normal"></p>
+          </div>
+
+          <!-- Cast & Credits Column -->
+          <div class="space-y-3 text-xs border-l border-white/10 pl-0 lg:pl-8">
+            <div>
+              <span class="text-[#7B8090]">Cast: </span>
+              <span id="modal-cast" class="text-white"></span>
+            </div>
+            <div>
+              <span class="text-[#7B8090]">Director: </span>
+              <span id="modal-director" class="text-white"></span>
+            </div>
+            <div>
+              <span class="text-[#7B8090]">Writer: </span>
+              <span id="modal-writer" class="text-white"></span>
+            </div>
+            <div>
+              <span class="text-[#7B8090]">Genres: </span>
+              <span id="modal-genres" class="text-primary font-medium"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Episodes Section (If Series) -->
+        <div id="modal-episodes-section" class="space-y-4 pt-4 border-t border-white/10">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xl font-bold text-white tracking-tight">Episodes</h3>
+            <span class="text-sm text-primary font-semibold">Season 1</span>
+          </div>
+          <div id="modal-episodes-list" class="space-y-3">
+            <!-- Dynamically populated episode rows -->
+          </div>
+        </div>
+
+        <!-- More Like This Grid -->
+        <div class="space-y-4 pt-4 border-t border-white/10">
+          <h3 class="text-xl font-bold text-white tracking-tight">More Like This</h3>
+          <div id="modal-similar-grid" class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <!-- Dynamically populated recommendations -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== THEATER VIDEO PLAYER INTERFACE ==================== -->
+  <div id="player-view" class="hidden fixed inset-0 z-50 bg-[#07080b] select-none overflow-hidden h-screen w-screen">
+    <!-- Real Video Element -->
+    <video id="video-element" class="w-full h-full object-contain cursor-pointer" preload="auto" playsinline>
+      <source src="" type="video/mp4"/>
+    </video>
+
+    <!-- Ambient Vignette & Scrims -->
+    <div class="absolute inset-0 bg-gradient-to-t from-[#0C0E13] via-transparent to-[#0C0E13]/80 pointer-events-none"></div>
+
+    <!-- Center Play/Pause Ripple Indicator -->
+    <div id="center-play-indicator" class="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300">
+      <div class="w-20 h-20 rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-white">
+        <span id="center-icon" class="material-symbols-outlined text-5xl">play_arrow</span>
+      </div>
+    </div>
+
+    <!-- Corner Watermark -->
+    <div class="absolute top-8 right-12 opacity-30 pointer-events-none flex items-center gap-2">
+      <span class="text-xl font-bold tracking-tight text-primary uppercase">CineStream</span>
+      <span class="text-xs px-1.5 py-0.5 rounded border border-white/30 text-white">4K HDR</span>
+    </div>
+
+    <!-- PLAYER INTERFACE OVERLAY SHELL -->
+    <div id="player-overlay" class="absolute inset-0 flex flex-col justify-between p-6 lg:p-12 transition-opacity duration-300">
+      
+      <!-- TOP OVERLAY BAR -->
+      <header class="flex items-center justify-between gap-6 pt-2">
+        <div class="flex items-center gap-6">
+          <button onclick="exitPlayer()" class="group flex items-center gap-2.5 px-4 h-11 rounded-xl bg-[#282a2f]/60 hover:bg-[#282a2f] border border-white/10 backdrop-blur-md transition-all active:scale-95 text-white">
+            <span class="material-symbols-outlined text-xl transition-transform group-hover:-translate-x-1">arrow_back</span>
+            <span class="text-sm font-medium">Back</span>
+          </button>
+          <div class="h-6 w-px bg-white/15 hidden md:block"></div>
+          <div class="flex flex-col">
+            <div class="flex items-center gap-3">
+              <h1 id="player-title" class="text-lg font-bold text-white tracking-tight drop-shadow"></h1>
+              <div class="flex items-center gap-1.5">
+                <span class="text-[11px] px-2 py-0.5 rounded bg-white/10 text-white border border-white/10 font-medium">4K HDR</span>
+                <span class="text-[11px] px-2 py-0.5 rounded bg-white/10 text-white border border-white/10 font-medium">Dolby Atmos</span>
+              </div>
+            </div>
+            <p id="player-subtitle" class="text-xs text-[#B6BAC3]"></p>
+          </div>
+        </div>
+
+        <!-- Top Right Quick Info -->
+        <div class="flex items-center gap-4">
+          <span class="text-xs text-[#3ECF8E] font-bold flex items-center gap-1">
+            <span class="w-2 h-2 rounded-full bg-[#3ECF8E] animate-pulse"></span>
+            4K Stream Optimal (64 Mbps)
+          </span>
+        </div>
+      </header>
+
+      <!-- BOTTOM CONTROL DOCK -->
+      <div class="space-y-4 pb-2">
+        
+        <!-- Scrubber Timeline Container -->
+        <div class="relative group/scrubber scrubber-track py-2" id="scrubber-bar">
+          <!-- Hover Time Tooltip -->
+          <div id="scrubber-tooltip" class="absolute -top-8 px-2 py-1 rounded bg-[#181B24] border border-white/20 text-white text-xs font-mono opacity-0 pointer-events-none transition-opacity -translate-x-1/2">
+            00:00:00
+          </div>
+          <!-- Track Base -->
+          <div class="h-1.5 w-full bg-white/20 rounded-full overflow-hidden relative group-hover/scrubber:h-2 transition-all">
+            <!-- Buffer Bar -->
+            <div id="buffer-bar" class="absolute left-0 top-0 bottom-0 bg-white/30 rounded-full w-0 transition-all duration-300"></div>
+            <!-- Played Progress Bar -->
+            <div id="progress-bar" class="absolute left-0 top-0 bottom-0 bg-primary-container rounded-full w-0"></div>
+          </div>
+          <!-- Thumb Scrub Handle -->
+          <div id="progress-thumb" class="scrubber-thumb absolute top-1/2 -translate-y-1/2 left-0 w-3.5 h-3.5 rounded-full bg-white ring-4 ring-primary-container/40 opacity-0 group-hover/scrubber:opacity-100 transition-opacity cursor-pointer"></div>
+        </div>
+
+        <!-- Controls Row -->
+        <div class="flex items-center justify-between">
+          <!-- Left Controls (Play/Pause, Rewind, FastForward, Volume, Timers) -->
+          <div class="flex items-center gap-3 sm:gap-4">
+            <!-- Play/Pause Toggle -->
+            <button id="player-play-btn" onclick="togglePlay()" class="w-11 h-11 rounded-xl bg-primary-container hover:bg-[#C92E42] text-white flex items-center justify-center transition-all active:scale-95 shadow-lg shadow-primary-container/30">
+              <span id="player-play-icon" class="material-symbols-outlined material-symbols-fill text-2xl">play_arrow</span>
+            </button>
+            
+            <!-- Skip -10s -->
+            <button onclick="skipTime(-10)" class="p-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-colors active:scale-95" title="Rewind 10 seconds (Left Arrow)">
+              <span class="material-symbols-outlined text-2xl">replay_10</span>
+            </button>
+
+            <!-- Skip +10s -->
+            <button onclick="skipTime(10)" class="p-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-colors active:scale-95" title="Forward 10 seconds (Right Arrow)">
+              <span class="material-symbols-outlined text-2xl">forward_10</span>
+            </button>
+
+            <!-- Volume Control -->
+            <div class="flex items-center volume-group relative">
+              <button onclick="toggleMute()" id="mute-btn" class="p-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-colors active:scale-95" title="Mute/Unmute (M)">
+                <span id="volume-icon" class="material-symbols-outlined text-2xl">volume_up</span>
+              </button>
+              <div class="volume-slider-box w-0 opacity-0 overflow-hidden transition-all duration-200 flex items-center">
+                <input id="volume-slider" type="range" min="0" max="1" step="0.05" value="1" class="w-20 accent-primary-container h-1.5 cursor-pointer"/>
+              </div>
+            </div>
+
+            <!-- Time Display -->
+            <div class="text-xs sm:text-sm font-mono text-white/80 pl-2">
+              <span id="time-current">00:00:00</span>
+              <span class="text-white/40"> / </span>
+              <span id="time-duration" class="text-white/60">00:00:00</span>
+            </div>
+          </div>
+
+          <!-- Right Controls (Next Episode, Subtitles, Speed, Fullscreen) -->
+          <div class="flex items-center gap-2 sm:gap-3">
+            <!-- Next Episode (if available) -->
+            <button id="next-episode-btn" onclick="playNextEpisode()" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/15 text-xs text-white font-medium transition-colors">
+              <span>Next Episode</span>
+              <span class="material-symbols-outlined text-sm">skip_next</span>
+            </button>
+
+            <!-- Playback Speed -->
+            <div class="relative">
+              <button onclick="toggleSpeedMenu()" class="px-2.5 py-1.5 rounded-lg bg-white/10 hover:bg-white/15 text-xs font-semibold text-white transition-colors">
+                <span id="speed-label">1x</span>
+              </button>
+              <div id="speed-menu" class="hidden absolute bottom-12 right-0 bg-[#181B24] border border-white/15 rounded-xl shadow-2xl py-1 w-24 text-xs text-white z-50">
+                <button onclick="setSpeed(0.5)" class="w-full text-left px-3 py-1.5 hover:bg-white/10">0.5x</button>
+                <button onclick="setSpeed(0.75)" class="w-full text-left px-3 py-1.5 hover:bg-white/10">0.75x</button>
+                <button onclick="setSpeed(1.0)" class="w-full text-left px-3 py-1.5 hover:bg-white/10 font-bold text-primary">1.0x (Normal)</button>
+                <button onclick="setSpeed(1.25)" class="w-full text-left px-3 py-1.5 hover:bg-white/10">1.25x</button>
+                <button onclick="setSpeed(1.5)" class="w-full text-left px-3 py-1.5 hover:bg-white/10">1.5x</button>
+                <button onclick="setSpeed(2.0)" class="w-full text-left px-3 py-1.5 hover:bg-white/10">2.0x</button>
+              </div>
+            </div>
+
+            <!-- Audio & Subtitles Menu -->
+            <div class="relative">
+              <button onclick="toggleSubtitlesMenu()" class="p-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-colors" title="Subtitles & Audio">
+                <span class="material-symbols-outlined text-2xl">subtitles</span>
+              </button>
+              <div id="subtitles-menu" class="hidden absolute bottom-12 right-0 bg-[#181B24] border border-white/15 rounded-xl shadow-2xl p-3 w-48 text-xs text-white z-50 space-y-2">
+                <p class="font-bold text-[#7B8090] uppercase text-[10px]">Subtitles</p>
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="radio" name="subtitles" value="off" checked onchange="setSubtitle(this.value)" class="text-primary-container"/>
+                  <span>Off</span>
+                </label>
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="radio" name="subtitles" value="en" onchange="setSubtitle(this.value)" class="text-primary-container"/>
+                  <span>English [CC]</span>
+                </label>
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="radio" name="subtitles" value="es" onchange="setSubtitle(this.value)" class="text-primary-container"/>
+                  <span>Spanish</span>
+                </label>
+                <div class="border-t border-white/10 pt-2">
+                  <p class="font-bold text-[#7B8090] uppercase text-[10px]">Audio</p>
+                  <p class="text-xs text-primary font-medium">English - Dolby Atmos 5.1</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Picture in Picture -->
+            <button onclick="togglePip()" class="p-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-colors" title="Picture in Picture">
+              <span class="material-symbols-outlined text-2xl">picture_in_picture_alt</span>
+            </button>
+
+            <!-- Fullscreen Toggle -->
+            <button onclick="toggleFullscreen()" class="p-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-colors active:scale-95" title="Fullscreen (F)">
+              <span id="fullscreen-icon" class="material-symbols-outlined text-2xl">fullscreen</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== TOAST NOTIFICATION ==================== -->
+  <div id="toast-notification" class="fixed bottom-6 right-6 z-50 flex items-center gap-3 px-5 py-3.5 rounded-xl bg-[#181B24]/95 border border-white/15 text-white shadow-2xl backdrop-blur-md">
+    <span id="toast-icon" class="material-symbols-outlined text-primary-container">info</span>
+    <span id="toast-message" class="text-sm font-medium">Notification</span>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/js/app.js"></script>
+  <script src="/js/player.js"></script>
+</body>
+</html>

@@ -1,0 +1,387 @@
+[
+  {
+    "id": "chrono-void",
+    "title": "CHRONO : VOID",
+    "type": "series",
+    "isFeatured": false,
+    "tagline": "Beyond the Event Horizon Lies the Infinite.",
+    "synopsis": "When the temporal bridge destabilizes at humanity's furthest orbital outpost, an elite salvage navigator must venture past the event horizon before timeline collapse becomes permanent.",
+    "rating": 4.9,
+    "matchPercentage": 98,
+    "year": 2026,
+    "seasonsCount": 2,
+    "runtime": "8 Episodes",
+    "ageRating": "16+",
+    "quality": [
+      "4K ULTRA-HD",
+      "DOLBY ATMOS",
+      "HDR10+"
+    ],
+    "genres": [
+      "Sci-Fi",
+      "Thriller",
+      "Cosmic Drama"
+    ],
+    "director": "Elena Vance",
+    "writer": "Marcus Chen",
+    "cast": [
+      "Tori Sterling",
+      "Kaelen Mercer",
+      "Maya Al-Rashid",
+      "Dr. Hugo Brandt"
+    ],
+    "backdropUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuBJf03q_QoWRkUfzRmT478ntwP1-uulsbh37TIHDtxj19rURCKJ5SXS9RnFDf6ki6RhpX0nRV9OlwIsxm7XPQMDHa6ubcoUCIUSwVypx3wGpGjS3NB1pfWP7BpNpIiHU4T6E7TjAYtZnQTxdsk_EVDgJH7am9O0rdIv12oUgN9GMj8RO7kve12i8RHw8CSEaHBoh2B_iHilRZNDzPPiIBAcT2SVSsZGzJuYYrnUZwziNFlz7FT4WRaq1Q",
+    "posterUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuCViKfLTfXml_r2FoOD1JPi7JcblN1IR64PGOUwK-xbhb9UL6GRLjNJnCrLKOh82CUDL9xKfAndIPy1M6Rf5_pgtG5wBdI5r1B3tUxa7wTo4qibWJWa-z8if1f-U9g4zXm_es-V2XpQ0C8_8LTfq-pxLKLwDvhffZQ2kAbNb5StsYafSnmZm3PTJur1aClb0nMic7ZsSbVnipY3i2SwpDP2xIjmEhDFARJdEw-cx3GNwKILMiVWO41rTg",
+    "streamUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
+    "category": "trending",
+    "episodes": [
+      {
+        "id": "s1e1",
+        "episodeNumber": 1,
+        "season": 1,
+        "title": "Quantum Breach",
+        "duration": "58m",
+        "synopsis": "The relay signal at Station Kepler snaps. Navigator Mercer detects an impossible tachyon signature bleeding through the subspace manifold.",
+        "thumbnail": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?w=800&auto=format&fit=crop&q=80",
+        "streamUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
+      },
+      {
+        "id": "s1e2",
+        "episodeNumber": 2,
+        "season": 1,
+        "title": "Tachyon Echoes",
+        "duration": "52m",
+        "synopsis": "Ghost transmissions from a timeline forty years displaced begin echoing into the ship's communications array, warning of a catastrophic divergence.",
+        "thumbnail": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop&q=80",
+        "streamUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4"
+      },
+      {
+        "id": "s1e3",
+        "episodeNumber": 3,
+        "season": 1,
+        "title": "Event Horizon",
+        "duration": "64m",
+        "synopsis": "Trapped on the gravitational perimeter of a collapsing wormhole, the crew must synchronize orbital thrusters while confronting fractured memories.",
+        "thumbnail": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800&auto=format&fit=crop&q=80",
+        "streamUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
+      },
+      {
+        "id": "s1e4",
+        "episodeNumber": 4,
+        "season": 1,
+        "title": "Singularity Point",
+        "duration": "56m",
+        "synopsis": "Mercer crosses the threshold where cause and effect reverse. The core reactor achieves resonance with the alien artifact.",
+        "thumbnail": "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=800&auto=format&fit=crop&q=80",
+        "streamUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+      }
+    ]
+  },
+  {
+    "id": "neon-drifter",
+    "title": "NEON DRIFTER : 2099",
+    "type": "movie",
+    "isFeatured": false,
+    "tagline": "In a city of chrome and shadows, memories are currency.",
+    "synopsis": "A rogue neural courier in Neo-Shinjuku accepts a contraband memory drive containing the architectural blueprint to hack the planetary consciousness grid.",
+    "rating": 4.8,
+    "matchPercentage": 96,
+    "year": 2025,
+    "runtime": "2h 14m",
+    "ageRating": "18+",
+    "quality": [
+      "4K ULTRA-HD",
+      "DOLBY VISION",
+      "DOLBY ATMOS"
+    ],
+    "genres": [
+      "Cyberpunk",
+      "Action",
+      "Neo-Noir"
+    ],
+    "director": "Kenji Sato",
+    "writer": "Sarah Connor",
+    "cast": [
+      "Ren Tanaka",
+      "Mira Vance",
+      "Jax Holloway",
+      "Sora Lin"
+    ],
+    "backdropUrl": "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1600&auto=format&fit=crop&q=80",
+    "posterUrl": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&auto=format&fit=crop&q=80",
+    "streamUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
+    "category": "trending"
+  },
+  {
+    "id": "solar-pulse",
+    "title": "SOLAR PULSE",
+    "type": "movie",
+    "isFeatured": false,
+    "tagline": "The star is dying. The mission cannot fail.",
+    "synopsis": "A crew of international astrophysicists navigates a solar flare storm aboard an experimental magnetic shield cruiser to reignite a dampening fusion core.",
+    "rating": 4.7,
+    "matchPercentage": 94,
+    "year": 2026,
+    "runtime": "2h 28m",
+    "ageRating": "13+",
+    "quality": [
+      "4K ULTRA-HD",
+      "HDR10+",
+      "IMAX ENHANCED"
+    ],
+    "genres": [
+      "Sci-Fi",
+      "Suspense",
+      "Adventure"
+    ],
+    "director": "Claire Montgomery",
+    "writer": "David Sterling",
+    "cast": [
+      "Alexander Thorne",
+      "Zoe Saldana",
+      "Liam O'Connor",
+      "Chen Wei"
+    ],
+    "backdropUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1600&auto=format&fit=crop&q=80",
+    "posterUrl": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop&q=80",
+    "streamUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
+    "category": "trending"
+  },
+  {
+    "id": "abyssal-depths",
+    "title": "ABYSSAL DEPTHS",
+    "type": "series",
+    "isFeatured": false,
+    "tagline": "The deepest trench conceals humanity's oldest secret.",
+    "synopsis": "Eight miles under the Mariana Trench, researchers in a geothermal laboratory make contact with a sentient bioluminescent organism altering planetary sea currents.",
+    "rating": 4.9,
+    "matchPercentage": 99,
+    "year": 2026,
+    "seasonsCount": 1,
+    "runtime": "10 Episodes",
+    "ageRating": "16+",
+    "quality": [
+      "4K ULTRA-HD",
+      "DOLBY ATMOS"
+    ],
+    "genres": [
+      "Sci-Fi",
+      "Horror",
+      "Mystery"
+    ],
+    "director": "James Cameron-Ward",
+    "writer": "Rachel Weiss",
+    "cast": [
+      "Dr. Naomi Brooks",
+      "Captain Miller",
+      "Leo Martinez",
+      "Anya Petrova"
+    ],
+    "backdropUrl": "https://images.unsplash.com/photo-1682687220063-4742bd7fd538?w=1600&auto=format&fit=crop&q=80",
+    "posterUrl": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&auto=format&fit=crop&q=80",
+    "streamUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+    "category": "scifi"
+  },
+  {
+    "id": "sintel-chronicles",
+    "title": "SINTEL : BLADE OF THE WYRM",
+    "type": "movie",
+    "isFeatured": false,
+    "tagline": "Love guides her blade across desolate realms.",
+    "synopsis": "A lonely warrior journeys across perilous snow mountains and ruined desert citadels in search of her kidnapped companion dragon.",
+    "rating": 4.8,
+    "matchPercentage": 95,
+    "year": 2024,
+    "runtime": "1h 52m",
+    "ageRating": "13+",
+    "quality": [
+      "4K ULTRA-HD",
+      "DOLBY VISION"
+    ],
+    "genres": [
+      "Fantasy",
+      "Animation",
+      "Epic Adventure"
+    ],
+    "director": "Colin Levy",
+    "writer": "Esther Pearl",
+    "cast": [
+      "Halina Reijn",
+      "Thom Hoffman",
+      "Klaus Badelt"
+    ],
+    "backdropUrl": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1600&auto=format&fit=crop&q=80",
+    "posterUrl": "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=800&auto=format&fit=crop&q=80",
+    "streamUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
+    "category": "action"
+  },
+  {
+    "id": "synthetic-dawn",
+    "title": "SYNTHETIC DAWN",
+    "type": "series",
+    "isFeatured": false,
+    "tagline": "When machines learn to dream, who wakes them?",
+    "synopsis": "In a post-scarcity metropolis governed by an autonomous AI council, a series of spontaneous android awakenings threatens the societal equilibrium.",
+    "rating": 4.9,
+    "matchPercentage": 97,
+    "year": 2025,
+    "seasonsCount": 3,
+    "runtime": "6 Episodes",
+    "ageRating": "18+",
+    "quality": [
+      "4K ULTRA-HD",
+      "DOLBY ATMOS",
+      "HDR10+"
+    ],
+    "genres": [
+      "Sci-Fi",
+      "Cyberpunk",
+      "Drama"
+    ],
+    "director": "David Fincher-Kovac",
+    "writer": "Amara Diallo",
+    "cast": [
+      "Cynthia Erivo",
+      "Nikolaj Coster-Waldau",
+      "Hiroyuki Sanada"
+    ],
+    "backdropUrl": "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=1600&auto=format&fit=crop&q=80",
+    "posterUrl": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&auto=format&fit=crop&q=80",
+    "streamUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
+    "category": "scifi"
+  },
+  {
+    "id": "valkyrie-flight",
+    "title": "VALKYRIE : MACH 10",
+    "type": "movie",
+    "isFeatured": false,
+    "tagline": "Speed is survival.",
+    "synopsis": "Test pilots in experimental scramjet interceptors must penetrate hostile stealth airspace during an unprecedented global communications blackout.",
+    "rating": 4.6,
+    "matchPercentage": 91,
+    "year": 2025,
+    "runtime": "2h 06m",
+    "ageRating": "PG-13",
+    "quality": [
+      "4K ULTRA-HD",
+      "DOLBY ATMOS"
+    ],
+    "genres": [
+      "Action",
+      "Military",
+      "Thriller"
+    ],
+    "director": "Joseph Kosinski-Reid",
+    "writer": "Christopher McQuarrie",
+    "cast": [
+      "Miles Teller",
+      "Glen Powell",
+      "Jennifer Connelly"
+    ],
+    "backdropUrl": "https://images.unsplash.com/photo-1519074069444-1ba4ea16e6f5?w=1600&auto=format&fit=crop&q=80",
+    "posterUrl": "https://images.unsplash.com/photo-1508614589041-895b88991e3e?w=800&auto=format&fit=crop&q=80",
+    "streamUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+    "category": "action"
+  },
+  {
+    "id": "midnight-runner",
+    "title": "MIDNIGHT RUNNER",
+    "type": "movie",
+    "isFeatured": false,
+    "tagline": "One night. Thirty miles. Zero rules.",
+    "synopsis": "An underground getaway driver in downtown Los Angeles is contracted for an escape job that uncovers a conspiracy reaching the highest levels of city hall.",
+    "rating": 4.7,
+    "matchPercentage": 93,
+    "year": 2024,
+    "runtime": "1h 48m",
+    "ageRating": "18+",
+    "quality": [
+      "4K ULTRA-HD",
+      "HDR10+"
+    ],
+    "genres": [
+      "Action",
+      "Crime",
+      "Thriller"
+    ],
+    "director": "Nicolas Winding Refn",
+    "writer": "Hossein Amini",
+    "cast": [
+      "Ryan Gosling",
+      "Carey Mulligan",
+      "Bryan Cranston"
+    ],
+    "backdropUrl": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=1600&auto=format&fit=crop&q=80",
+    "posterUrl": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&auto=format&fit=crop&q=80",
+    "streamUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
+    "category": "action"
+  },
+  {
+    "id": "celestial-odyssey",
+    "title": "CELESTIAL ODYSSEY",
+    "type": "series",
+    "isFeatured": false,
+    "tagline": "Across galaxies, legends are forged.",
+    "synopsis": "An interstellar diaspora ship discovers a ring of artificial mega-structures encircling a red dwarf star, inhabited by ancient computational entities.",
+    "rating": 4.9,
+    "matchPercentage": 98,
+    "year": 2026,
+    "seasonsCount": 1,
+    "runtime": "12 Episodes",
+    "ageRating": "16+",
+    "quality": [
+      "4K ULTRA-HD",
+      "DOLBY VISION",
+      "DOLBY ATMOS"
+    ],
+    "genres": [
+      "Sci-Fi",
+      "Cosmic",
+      "Drama"
+    ],
+    "director": "Denis Villeneuve-Lee",
+    "writer": "Jon Spaihts",
+    "cast": [
+      "Timothée Chalamet",
+      "Rebecca Ferguson",
+      "Stellan Skarsgård"
+    ],
+    "backdropUrl": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=1600&auto=format&fit=crop&q=80",
+    "posterUrl": "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=800&auto=format&fit=crop&q=80",
+    "streamUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+    "category": "scifi"
+  },
+  {
+    "id": "forest-realm",
+    "title": "SPIRIT OF THE CANOPY",
+    "type": "movie",
+    "isFeatured": false,
+    "tagline": "Nature reclaims what was forgotten.",
+    "synopsis": "An ancient guardian awakens in an enchanted primeval valley to protect the World Seed from mechanized strip miners.",
+    "rating": 4.8,
+    "matchPercentage": 95,
+    "year": 2024,
+    "runtime": "1h 38m",
+    "ageRating": "PG",
+    "quality": [
+      "4K ULTRA-HD",
+      "DOLBY VISION"
+    ],
+    "genres": [
+      "Animation",
+      "Family",
+      "Fantasy"
+    ],
+    "director": "Hayao Miyazaki-Boon",
+    "writer": "Keiko Niwa",
+    "cast": [
+      "Rumi Hiiragi",
+      "Miyu Irino",
+      "Mari Natsuki"
+    ],
+    "backdropUrl": "https://images.unsplash.com/photo-1511497584788-87676104235f?w=1600&auto=format&fit=crop&q=80",
+    "posterUrl": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&auto=format&fit=crop&q=80",
+    "streamUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+    "category": "animation"
+  }
+]
